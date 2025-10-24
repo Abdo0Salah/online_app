@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'features/login/presintation/views/screens/home_screen.dart';
-
-
+import 'features/sign_up/presintation/views/screens/signup_screen.dart';
+import 'config/dependency_Injection/dependency_Injection.dart';
 
 void main() {
-  runApp(const MyApp());
+  configureDependencies();
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: LoginScreen(),
+      home: SignUpScreen(),
     );
   }
 }
