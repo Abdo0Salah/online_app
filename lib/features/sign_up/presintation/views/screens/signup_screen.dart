@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/config/dependency_Injection/dependency_Injection.dart';
 import 'package:online_exam_app/core/utils/validators_utils.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
+import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_event.dart';
 import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_states.dart';
 import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_viewmodel.dart';
 import 'package:online_exam_app/features/sign_up/presintation/views/widgets/custom_button.dart';
@@ -117,21 +118,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     BlocListener<SignUpViewModel, SignupStates>(
                       bloc: signUpViewModel,
                       listener: (context, state) {
-                        switch (state) {
-                          case SignupErrorState():
-                            {
-
-                              print("❌❌❌❌❌❌❌❌❌ Error");
-                            }
-
-                          case SignupLodingState():
-                            {
-                              print("⌛⌛⌛⌛⌛⌛⌛⌛⌛ Loading...");
-                            }
-                          case SignupLodedState():
-                            {}
-                            print("✅✅✅✅✅✅✅✅ Success");
-                            {}
+                        final signUpState = state.signUpStates;
+                        if (signUpState == null) {
+                          return;
+                        } else if (signUpState.errorMessage != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(signUpState.errorMessage!)),
+                          );
+                        } else if (signUpState.data != null) {
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(const SnackBar(content: Text("done")));
+                          // Navigator.pushReplacementNamed();
                         }
                       },
                       child: CustomButton(
@@ -139,6 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: validateSignUP,
                       ),
                     ),
+
                     const SizedBox(height: 20),
                     Center(
                       child: Text(
@@ -172,8 +171,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         rePassword: signUpViewModel.confirmPasswordController.text,
         phone: signUpViewModel.phoneController.text,
       );
-      signUpViewModel.signUp(userRequest);
-     // Navigator.pop(context).
+      signUpViewModel.doIntent(SignUpEvent(userRequest: userRequest));
+      // Navigator.pop(context).
     }
   }
 }

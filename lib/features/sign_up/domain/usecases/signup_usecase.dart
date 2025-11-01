@@ -8,5 +8,6 @@ import '../../data/models/user_request.dart';
 class SignUpUseCase {
   final SignUpRepoContract repo;
   SignUpUseCase(this.repo);
-  Future<BaseResponse <UserModel>> call(UserRequest request) => repo.signUp(request);
+  Future<BaseResponse<UserModel>> call(UserRequest request) =>
+      repo.signUp(request);
 }

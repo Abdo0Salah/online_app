@@ -6,13 +6,12 @@ import 'package:retrofit/retrofit.dart';
 import '../../../../core/values/app_endpoints_strings.dart';
 
 part 'api_client.g.dart';
+
 @injectable
 @RestApi()
 abstract class SignUpApiClient {
   @factoryMethod
-  factory SignUpApiClient(Dio dio, ) = _SignUpApiClient;
+  factory SignUpApiClient(Dio dio) = _SignUpApiClient;
   @POST(AppEndPoints.signUpEndpoint)
   Future<SignupResponse> signUp(@Body() UserRequest userRequest);
-
-
 }

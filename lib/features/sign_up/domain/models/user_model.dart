@@ -19,4 +19,4 @@ class UserModel {
     required this.Id,
     required this.createdAt,
   });
-} //
+}
