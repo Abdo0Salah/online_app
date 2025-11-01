@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/sign_up/data/datasources/signup_remote_datasource_contract.dart';
 import 'package:online_exam_app/features/sign_up/data/models/signup_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_dto.dart';
@@ -12,22 +13,13 @@ class SignupRemoteDatasourceImpl implements SignUpRemoteDataSourceContract {
   SignupRemoteDatasourceImpl(this.api);
 
   @override
-  Future<UserDto> signUp(UserRequest request) async {
+  Future<BaseResponse<UserDto>> signUp(UserRequest request) async {
     try {
       SignupResponse signupResponse = await api.signUp(request);
-      UserDto? user = signupResponse.userDto;
-      if (user == null) {
-        throw Exception("User not found in response");
-      }
-      return user;
-    } on DioException catch (e) {
-      log('❌ DioException caught!');
-      log('Type: ${e.type}');
-      log('Message: ${e.message}');
-      log('Status code: ${e.response?.statusCode}');
-      log('Data: ${e.response?.data}');
-      log('Request path: ${e.requestOptions.path}');
-      rethrow;
+      UserDto user = signupResponse.userDto ?? UserDto() ;
+      return SuccessResponse<UserDto>(data: user);
+      }catch(e){
+      return ErrorResponse<UserDto>(error: e as Exception);
     }
   }
 }

@@ -13,4 +13,6 @@ abstract class SignUpApiClient {
   factory SignUpApiClient(Dio dio, ) = _SignUpApiClient;
   @POST(AppEndPoints.signUpEndpoint)
   Future<SignupResponse> signUp(@Body() UserRequest userRequest);
+
+
 }

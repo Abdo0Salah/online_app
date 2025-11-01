@@ -1,34 +1,44 @@
 import 'dart:developer';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
 import 'package:online_exam_app/features/sign_up/domain/models/user_model.dart';
 import 'package:dio/dio.dart';
+import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_states.dart';
 import '../../domain/usecases/signup_usecase.dart';
+
 @injectable
-class SignUpViewModel {
+class SignUpViewModel extends Cubit<SignupStates> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   SignUpUseCase signUpUseCase;
-  SignUpViewModel(this.signUpUseCase);
-  Future<String?> signUp(UserRequest request) async {
-    try {
-      UserModel user = await await signUpUseCase(request);
+
+  //@Factory
+  SignUpViewModel(this.signUpUseCase) : super(SignupLodingState());
+
+  void signUp(UserRequest userRequest) async {
+
+      emit(SignupLodingState());
+      BaseResponse<UserModel> response = await signUpUseCase(userRequest);
+      switch (response){
+        case SuccessResponse<UserModel>():
+        emit(SignupLodedState(response.data));
       print(
-        "=========================${user.phone}====================${user.createdAt}===========================================================================",
+      "==================${response.data.phone}===========${response.data.createdAt}===========================================================================",
       );
-      return "${user.createdAt}=";
-    } on DioException catch (e) {
-      // This catches errors from Dio specifically
-      log('DioException caught!');
-      log('Type: ${e.type}');
-      log('Message: ${e.message}');
-      log('Status code: ${e.response?.statusCode}');
-      log('Data: ${e.response?.data}');
-      log('Headers: ${e.response?.headers}');
-      log('Request path: ${e.requestOptions.path}');
-      return 'Dio error: ${e.message}';
-    } catch (e, s) {
-      log('Unknown error: $e');
-      log('Stack trace: $s');
-      return 'Unexpected error occurred';
+        case ErrorResponse<UserModel>():
+        emit(SignupErrorState(response.error.toString()));
+
+      }
+
     }
+
   }
-}
+
