@@ -8,13 +8,15 @@ import 'package:online_exam_app/features/login/presentation/views/widgets/custom
 import 'package:online_exam_app/features/login/presentation/views/widgets/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  LoginCubit loginViewModel = getIt<LoginCubit>();
 
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<LoginCubit>(),
+      create: (context) => loginViewModel,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
@@ -27,7 +29,7 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 12),
+                  const SizedBox(height:12),
                   const LoginForm(),
                   const SizedBox(height: 20),
                   const CustomTextSpanWidget(

@@ -63,5 +63,4 @@ class _LoginFormState extends State<LoginForm> {
       context.read<LoginCubit>().login(requestLogin);
     }
   }
-
 }

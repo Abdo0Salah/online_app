@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/routing/routes_generator.dart';
 import 'package:online_exam_app/core/values/routes_strings.dart';
 import 'package:online_exam_app/core/di/di.dart';
-import 'package:online_exam_app/core/routing/routes_generator.dart';
-import 'package:online_exam_app/core/values/routes_strings.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,15 +26,6 @@ class MyApp extends StatelessWidget {
           scrolledUnderElevation: 0,
           backgroundColor:Colors.transparent,
 
-
-
-
-        )
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          surfaceTintColor: Colors.transparent,
-          scrolledUnderElevation: 0,
-          backgroundColor:Colors.transparent,
         )
       ),
     );

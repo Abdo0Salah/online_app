@@ -4,7 +4,6 @@ import 'package:online_exam_app/features/login/presentation/views/screens/home_s
 import 'package:online_exam_app/features/forget_password/presentation/views/screens/forget_password_screen.dart';
 import 'package:online_exam_app/features/forget_password/presentation/views/screens/otp_screen.dart';
 import 'package:online_exam_app/features/forget_password/presentation/views/screens/reset_password_screen.dart';
-import 'package:online_exam_app/features/login/presentation/views/screens/login_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic>? getRoute(RouteSettings setting) {
