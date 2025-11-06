@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:online_exam_app/features/hom_screen/presintation/views/screens/home_screen.dart';
 import 'features/sign_up/presintation/views/screens/signup_screen.dart';
 import 'config/dependency_Injection/dependency_Injection.dart';
+import 'package:online_exam_app/core/routing/routes_generator.dart';
+import 'package:online_exam_app/core/values/routes_strings.dart';
 
 void main() {
   configureDependencies();
@@ -14,9 +16,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: RoutesStrings.loginScreen,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          backgroundColor:Colors.transparent,
+
+
+
+
+        )
       ),
       home: HomeScreen(),
     );
