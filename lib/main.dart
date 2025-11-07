@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/routing/routes_generator.dart';
-import 'package:online_exam_app/core/values/routes_strings.dart';
 import 'package:online_exam_app/core/di/di.dart';
+import 'package:online_exam_app/core/values/routes_strings.dart';
 
 
 void main() {
@@ -25,13 +25,8 @@ class MyApp extends StatelessWidget {
           surfaceTintColor: Colors.transparent,
           scrolledUnderElevation: 0,
           backgroundColor:Colors.transparent,
-
-
-
-
         )
       ),
-      home: HomeScreen(),
     );
   }
 }
