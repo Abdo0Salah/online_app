@@ -6,3 +6,4 @@ import 'package:online_exam_app/features/login/data/models_dto/login/response_lo
 abstract class LoginRepoContract {
   Future<ResponseLogin> login(RequestLogin requestLogin);
 }
+

@@ -26,8 +26,12 @@ class MyApp extends StatelessWidget {
           scrolledUnderElevation: 0,
           backgroundColor:Colors.transparent,
 
+
+
+
         )
       ),
+      home: HomeScreen(),
     );
   }
 }
