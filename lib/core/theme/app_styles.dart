@@ -59,6 +59,14 @@ class AppStyles {
       decoration: TextDecoration.underline,
     );
   }
+  static TextStyle font18BlackW500(){
+    return TextStyle(
+        fontSize: 18,
+        color: ColorsManager.myBlack,
+        fontWeight: FontWeight.w500
+    );
+  }
+
 
 
 

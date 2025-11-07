@@ -74,7 +74,7 @@ class CustomTextFromField extends StatelessWidget {
           borderSide:
               borderSide ?? BorderSide(color: ColorsManager.error, width: 1),
         ),
-
+        floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: suffixIcon,
       ),
       obscureText: isObscureText ?? false,
