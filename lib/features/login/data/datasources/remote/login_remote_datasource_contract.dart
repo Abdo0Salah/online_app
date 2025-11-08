@@ -3,7 +3,7 @@ import 'package:online_exam_app/features/login/data/models_dto/login/request_log
 import 'package:online_exam_app/features/login/data/models_dto/login/response_login.dart';
 
 
-@injectable
+
 abstract class LoginRemoteDatasourceContract {
   Future<ResponseLogin> login (RequestLogin requestLogin);
 }

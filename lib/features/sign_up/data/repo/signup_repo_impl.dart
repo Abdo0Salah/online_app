@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/features/sign_up/data/datasources/signup_local_datasource_contract.dart';
-import 'package:online_exam_app/features/sign_up/data/datasources/signup_remote_datasource_contract.dart';
+import 'package:online_exam_app/features/sign_up/data/datasources/local/signup_local_datasource_contract.dart';
+import 'package:online_exam_app/features/sign_up/data/datasources/remote/signup_remote_datasource_contract.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_dto.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
 import 'package:online_exam_app/features/sign_up/domain/models/user_model.dart';

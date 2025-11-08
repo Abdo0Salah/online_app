@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 @module
-class Module {
+abstract class Module {
   @lazySingleton
   Dio provideDio() {
     final dio = Dio();
@@ -15,6 +15,7 @@ class Module {
         requestBody: true,
         requestHeader: true,
         responseHeader: true,
+        request: true,
       ),
     );
     return dio;

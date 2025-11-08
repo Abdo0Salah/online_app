@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam_app/config/dependency_Injection/dependency_Injection.dart';
+import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/core/utils/validators_utils.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
 import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_event.dart';
