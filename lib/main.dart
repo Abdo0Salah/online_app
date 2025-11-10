@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           surfaceTintColor: Colors.transparent,
           scrolledUnderElevation: 0,
           backgroundColor:Colors.transparent,
-        )
+        ),
       ),
     );
   }

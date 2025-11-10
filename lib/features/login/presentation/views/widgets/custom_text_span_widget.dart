@@ -16,7 +16,7 @@ class CustomTextSpanWidget extends StatelessWidget {
           children: [
             TextSpan(
               text: firstTitle,
-              style: AppStyles.font16BlackW500(),
+              style: AppStyles.font16BlackW400(),
             ),
             TextSpan(
                 text: secondTitle,

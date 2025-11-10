@@ -1,4 +1,4 @@
-part of 'login_cubit.dart';
+part of 'login_view_model.dart';
 
 sealed class LoginState {}
 
@@ -14,3 +14,4 @@ final class LoginError extends LoginState {
   LoginError(this.message);
 
 }
+

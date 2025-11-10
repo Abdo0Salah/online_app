@@ -22,12 +22,13 @@ class _ApiClient implements ApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ResponseLogin> login(RequestLogin requestLogin) async {
+  Future<ResponseLoginDto> login(RequestLogin requestLogin) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ResponseLogin>(
+    final _data = <String, dynamic>{};
+    _data.addAll(requestLogin.toJson());
+    final _options = _setStreamType<ResponseLoginDto>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -38,9 +39,9 @@ class _ApiClient implements ApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ResponseLogin _value;
+    late ResponseLoginDto _value;
     try {
-      _value = ResponseLogin.fromJson(_result.data!);
+      _value = ResponseLoginDto.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -69,6 +70,36 @@ class _ApiClient implements ApiClient {
     late SignupResponse _value;
     try {
       _value = SignupResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ForgetPasswordResponseDto> forgetPassword(
+    ForgetPasswordRequest forgetPasswordRequest,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(forgetPasswordRequest.toJson());
+    final _options = _setStreamType<ForgetPasswordResponseDto>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'api/v1/auth/forgotPassword',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ForgetPasswordResponseDto _value;
+    try {
+      _value = ForgetPasswordResponseDto.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
