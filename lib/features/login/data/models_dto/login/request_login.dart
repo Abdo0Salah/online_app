@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 part 'request_login.g.dart';
 @JsonSerializable()
 class RequestLogin {
-
   final String email;
   final String password;
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/theme/colors_manager.dart';
+import 'package:online_exam_app/core/values/routes_strings.dart';
 
 class CheckboxAndForgetPassword extends StatefulWidget {
    const CheckboxAndForgetPassword({super.key});
@@ -32,7 +33,9 @@ class _CheckboxAndForgetPasswordState extends State<CheckboxAndForgetPassword> {
             Text("Remember me",style: AppStyles.font14BlackW400()),
           ],
         ),
-        Text("Forget password?",style: AppStyles.font12BlackW400Underline()),
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(context,RoutesStrings.forgetPasswordScreen),
+            child: Text("Forget password?",style: AppStyles.font12BlackW400Underline())),
       ],
     );
   }

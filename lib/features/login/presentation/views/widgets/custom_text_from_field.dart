@@ -6,6 +6,7 @@ class CustomTextFromField extends StatelessWidget {
   final String hintText;
   final TextStyle? hintStyle;
   final String? label;
+  final TextInputAction? textInputAction;
   final double? borderRadius;
   final BorderSide? borderSide;
   final OutlineInputBorder? outlineInputBorder;
@@ -13,6 +14,7 @@ class CustomTextFromField extends StatelessWidget {
   final bool? isObscureText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final void Function(String)? onFieldSubmitted;
 
   const CustomTextFromField({
     super.key,
@@ -25,12 +27,14 @@ class CustomTextFromField extends StatelessWidget {
     this.isObscureText,
     required this.label,
     this.controller,
-    this.validator,
+    this.validator, this.textInputAction, this.onFieldSubmitted,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
       controller: controller,
       validator: validator,
       decoration: InputDecoration(
