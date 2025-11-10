@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/theme/colors_manager.dart';
 
 class SearchBox extends StatelessWidget {
   final TextEditingController controller;
@@ -17,17 +18,17 @@ class SearchBox extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Material(
+        color: ColorsManager.myWhite,
         elevation: 1,
         borderRadius: BorderRadius.circular(20),
         child: TextField(
+
           controller: controller,
           onChanged: onChanged,
           decoration: InputDecoration(
             prefixIcon: const Icon(Icons.search),
             hintText: hintText,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
             suffixIcon: ValueListenableBuilder<TextEditingValue>(
               valueListenable: controller,
               builder: (_, value, __) {

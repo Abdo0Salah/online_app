@@ -6,7 +6,7 @@ import 'package:online_exam_app/features/hom_screen/domain/repo/get_all_subjects
 
 @injectable
 class GetAllSubjectsUseCases {
-  GetAllSubjectsRepoContrct repo ;
+  GetAllSubjectsRepoContract repo ;
   GetAllSubjectsUseCases(this.repo);
   Future<BaseResponse<List <SubjectModel>>> call(String token) => repo.getAllSubjects(token);
 }

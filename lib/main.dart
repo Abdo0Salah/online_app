@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/routing/routes_generator.dart';
 import 'package:online_exam_app/core/di/di.dart';
-import 'package:online_exam_app/core/values/routes_strings.dart';
+import 'package:online_exam_app/features/hom_screen/presentation/views/screens/home_screen.dart';
 
-
+import 'core/values/routes_strings.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: RoutesStrings.loginScreen,
+      initialRoute: RoutesStrings.signUpScreen,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
