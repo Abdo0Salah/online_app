@@ -112,38 +112,25 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i5.SignUpUseCase>(
       () => _i5.SignUpUseCase(gh<_i339.SignUpRepoContract>()),
     );
-    gh.factory<_i51.GetAllSubjectsRepoContrct>(
-      () => _i721.GetAllSubjectsRepoImpl(
-        gh<_i693.GetAllSubjectsLocalDsConteact>(),
-        gh<_i205.GetAllSubjectsRemoteDsConteact>(),
-      ),
+    gh.factory<_i269.SubjectViewModel>(
+      () => _i269.SubjectViewModel(gh<_i811.GetAllSubjectsUseCases>()),
     );
     gh.factory<_i665.ForgetPasswordRepoContract>(
       () => _i576.ForgetPasswordRepoImpl(
         gh<_i421.ForgetPasswordDataSourceRemoteContract>(),
       ),
     );
-    gh.factory<_i811.GetAllSubjectsUseCases>(
-      () => _i811.GetAllSubjectsUseCases(gh<_i51.GetAllSubjectsRepoContrct>()),
-    gh.factory<_i269.SubjectViewModel>(
-      () => _i269.SubjectViewModel(gh<_i811.GetAllSubjectsUseCases>()),
-    );
     gh.factory<_i180.LoginRepoContract>(
       () => _i176.LoginRepoImpl(gh<_i502.LoginRemoteDatasourceContract>()),
     );
     gh.factory<_i519.SignUpViewModel>(
       () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
-    gh.factory<_i270.SignUpViewModel>(
-      () => _i270.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
     gh.factory<_i437.ForgetPasswordUseCase>(
       () => _i437.ForgetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
     );
     gh.factory<_i416.ForgetPasswordViewModel>(
       () => _i416.ForgetPasswordViewModel(gh<_i437.ForgetPasswordUseCase>()),
-    );
-    gh.factory<_i703.HomeViewModel>(
-      () => _i703.HomeViewModel(gh<_i811.GetAllSubjectsUseCases>()),
     );
     gh.factory<_i420.LoginUseCase>(
       () => _i420.LoginUseCase(gh<_i180.LoginRepoContract>()),
