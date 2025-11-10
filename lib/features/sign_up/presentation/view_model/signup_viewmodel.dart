@@ -5,8 +5,8 @@ import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/base_state/base_state.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
 import 'package:online_exam_app/features/sign_up/domain/models/user_model.dart';
-import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_event.dart';
-import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_states.dart';
+import 'package:online_exam_app/features/sign_up/presentation/view_model/signup_event.dart';
+import 'package:online_exam_app/features/sign_up/presentation/view_model/signup_states.dart';
 import '../../domain/usecases/signup_usecase.dart';
 
 @injectable
@@ -34,7 +34,8 @@ class SignUpViewModel extends Cubit<SignupStates> {
     BaseResponse<UserModel> response = await signUpUseCase(userRequest);
     switch (response) {
       case SuccessResponse<UserModel>():
-        emit(state.copyWith(signUpState: BaseState(data: response.data)));
+        emit(state.copyWith(signUpState: BaseState(data: response.data)))
+        ;
       case ErrorResponse<UserModel>():
         emit(
           state.copyWith(

@@ -3,7 +3,6 @@ import 'package:online_exam_app/features/sign_up/data/datasources/local/signup_l
 import 'package:online_exam_app/features/sign_up/data/models/user_dto.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
 
-// @Injectable(as: SignUpLocalDataSourceContract)
 @LazySingleton(as: SignUpLocalDataSourceContract)
 class SignUpLocalDataSourceImpl implements SignUpLocalDataSourceContract {
   @override

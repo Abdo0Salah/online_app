@@ -29,8 +29,8 @@ import '../../features/hom_screen/domain/repo/get_all_subjects_repo_contrct.dart
     as _i51;
 import '../../features/hom_screen/domain/usecases/get_all_subjects_use_cases.dart'
     as _i811;
-import '../../features/hom_screen/presintation/view_model/home_viewmodel.dart'
-    as _i703;
+import '../../features/hom_screen/presentation/view_model/subject_viewmodel.dart'
+    as _i269;
 import '../../features/login/data/datasources/remote/login_remote_datasource_contract.dart'
     as _i502;
 import '../../features/login/data/datasources/remote/login_remote_datasource_impl.dart'
@@ -50,8 +50,8 @@ import '../../features/sign_up/data/datasources/remote/signup_remote_datasource_
 import '../../features/sign_up/data/repo/signup_repo_impl.dart' as _i821;
 import '../../features/sign_up/domain/repo/signup_repo_contract.dart' as _i339;
 import '../../features/sign_up/domain/usecases/signup_usecase.dart' as _i5;
-import '../../features/sign_up/presintation/view_model/signup_viewmodel.dart'
-    as _i270;
+import '../../features/sign_up/presentation/view_model/signup_viewmodel.dart'
+    as _i519;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -62,7 +62,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final module = _$Module();
     gh.lazySingleton<_i361.Dio>(() => module.provideDio());
-    gh.factory<_i693.GetAllSubjectsLocalDsConteact>(
+    gh.factory<_i693.GetAllSubjectsLocalDsContract>(
       () => _i318.GetAllSubjectsLocalDsImpl(),
     );
     gh.lazySingleton<_i644.SignUpLocalDataSourceContract>(
@@ -78,8 +78,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i138.SignUpRemoteDataSourceContract>(),
       ),
     );
-    gh.factory<_i205.GetAllSubjectsRemoteDsConteact>(
+    gh.factory<_i205.GetAllSubjectsRemoteDsContract>(
       () => _i265.GetAllSubjectsRemoteDsImpl(gh<_i502.ApiClient>()),
+    );
+    gh.factory<_i51.GetAllSubjectsRepoContract>(
+      () => _i721.GetAllSubjectsRepoImpl(
+        gh<_i693.GetAllSubjectsLocalDsContract>(),
+        gh<_i205.GetAllSubjectsRemoteDsContract>(),
+      ),
+    );
+    gh.factory<_i811.GetAllSubjectsUseCases>(
+      () => _i811.GetAllSubjectsUseCases(gh<_i51.GetAllSubjectsRepoContract>()),
     );
     gh.factory<_i502.LoginRemoteDatasourceContract>(
       () => _i1069.LoginRemoteDatasourceImpl(gh<_i502.ApiClient>()),
@@ -87,23 +96,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i5.SignUpUseCase>(
       () => _i5.SignUpUseCase(gh<_i339.SignUpRepoContract>()),
     );
-    gh.factory<_i51.GetAllSubjectsRepoContrct>(
-      () => _i721.GetAllSubjectsRepoImpl(
-        gh<_i693.GetAllSubjectsLocalDsConteact>(),
-        gh<_i205.GetAllSubjectsRemoteDsConteact>(),
-      ),
-    );
-    gh.factory<_i811.GetAllSubjectsUseCases>(
-      () => _i811.GetAllSubjectsUseCases(gh<_i51.GetAllSubjectsRepoContrct>()),
+    gh.factory<_i269.SubjectViewModel>(
+      () => _i269.SubjectViewModel(gh<_i811.GetAllSubjectsUseCases>()),
     );
     gh.factory<_i180.LoginRepoContract>(
       () => _i176.LoginRepoImpl(gh<_i502.LoginRemoteDatasourceContract>()),
     );
-    gh.factory<_i270.SignUpViewModel>(
-      () => _i270.SignUpViewModel(gh<_i5.SignUpUseCase>()),
-    );
-    gh.factory<_i703.HomeViewModel>(
-      () => _i703.HomeViewModel(gh<_i811.GetAllSubjectsUseCases>()),
+    gh.factory<_i519.SignUpViewModel>(
+      () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
     gh.factory<_i420.LoginUseCase>(
       () => _i420.LoginUseCase(gh<_i180.LoginRepoContract>()),

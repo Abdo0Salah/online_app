@@ -5,10 +5,10 @@ import 'package:online_exam_app/features/hom_screen/data/datasources/remote/get_
 import 'package:online_exam_app/features/hom_screen/data/models/subject_Dto.dart';
 import 'package:online_exam_app/features/hom_screen/domain/models/subjectModel.dart';
 import 'package:online_exam_app/features/hom_screen/domain/repo/get_all_subjects_repo_contrct.dart';
-@Injectable(as:GetAllSubjectsRepoContrct )
-class GetAllSubjectsRepoImpl implements GetAllSubjectsRepoContrct{
-  GetAllSubjectsLocalDsConteact  getAllSubjectsLocalDs;
-  GetAllSubjectsRemoteDsConteact getAllSubjectsRemoteDs;
+@Injectable(as:GetAllSubjectsRepoContract )
+class GetAllSubjectsRepoImpl implements GetAllSubjectsRepoContract{
+  GetAllSubjectsLocalDsContract  getAllSubjectsLocalDs;
+  GetAllSubjectsRemoteDsContract getAllSubjectsRemoteDs;
   GetAllSubjectsRepoImpl(this.getAllSubjectsLocalDs,this.getAllSubjectsRemoteDs);
   @override
   Future<BaseResponse<List <SubjectModel>>> getAllSubjects(String token) async {
