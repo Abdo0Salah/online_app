@@ -66,7 +66,13 @@ class AppStyles {
         fontWeight: FontWeight.w500
     );
   }
-
+  static TextStyle font16BlackW400(){
+    return TextStyle(
+        fontSize: 16,
+        color: ColorsManager.myBlack,
+        fontWeight: FontWeight.w400
+    );
+  }
 
 
 

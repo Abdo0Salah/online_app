@@ -6,8 +6,8 @@ import 'package:online_exam_app/features/hom_screen/data/datasources/remote/get_
 import 'package:online_exam_app/features/hom_screen/data/models/subject_Dto.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/subject_response.dart';
 
-@Injectable(as: GetAllSubjectsRemoteDsConteact )
- class GetAllSubjectsRemoteDsImpl implements GetAllSubjectsRemoteDsConteact{
+@Injectable(as: GetAllSubjectsRemoteDsContract )
+ class GetAllSubjectsRemoteDsImpl implements GetAllSubjectsRemoteDsContract{
   ApiClient api;
   GetAllSubjectsRemoteDsImpl(this.api);
   @override

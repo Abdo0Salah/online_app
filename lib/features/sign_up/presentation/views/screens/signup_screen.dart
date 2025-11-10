@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/di/di.dart';
+import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/utils/validators_utils.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/core/values/routes_strings.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
-import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_event.dart';
-import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_states.dart';
-import 'package:online_exam_app/features/sign_up/presintation/view_model/signup_viewmodel.dart';
-import 'package:online_exam_app/features/sign_up/presintation/views/widgets/custom_button.dart';
+import 'package:online_exam_app/features/sign_up/presentation/view_model/signup_event.dart';
+import 'package:online_exam_app/features/sign_up/presentation/view_model/signup_states.dart';
+import 'package:online_exam_app/features/sign_up/presentation/view_model/signup_viewmodel.dart';
+import 'package:online_exam_app/features/sign_up/presentation/views/widgets/custom_button.dart';
 import '../widgets/custom_text_from_field.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -30,12 +33,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text(
-            "Sign up",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
+            AppStrings.signup,
+            style: AppStyles.font20BlackW500(),
           ),
         ),
         body: SafeArea(
@@ -49,8 +48,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     SizedBox(height: 12),
                     CustomTextFromField(
-                      label: "User name",
-                      hintText: "Enter you User name ",
+                      label: AppStrings.userName,
+                      hintText:AppStrings.enterUserName,
                       controller: signUpViewModel.userNameController,
                       validator: ValidatorsUtils.validateFullName,
                     ),
@@ -59,8 +58,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Expanded(
                           child: CustomTextFromField(
-                            label: "First name",
-                            hintText: "Enter  First name",
+                            label: AppStrings.firstName,
+                            hintText: AppStrings.enterFirstname,
                             controller: signUpViewModel.firstNameController,
                             validator: ValidatorsUtils.validateFullName,
                           ),
@@ -68,8 +67,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const SizedBox(width: 18),
                         Expanded(
                           child: CustomTextFromField(
-                            label: "Last name",
-                            hintText: "Enter  First name",
+                            label: AppStrings.lastName,
+                            hintText:AppStrings.enterLastName,
                             controller: signUpViewModel.lastNameController,
                             validator: ValidatorsUtils.validateFullName,
                           ),
@@ -78,8 +77,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 18),
                     CustomTextFromField(
-                      label: "Email",
-                      hintText: "Enter you Email  ",
+                      label: AppStrings.email,
+                      hintText: AppStrings.enterEmail,
                       controller: signUpViewModel.emailController,
                       validator: ValidatorsUtils.validateEmail,
                     ),
@@ -88,8 +87,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Expanded(
                           child: CustomTextFromField(
-                            label: "Password",
-                            hintText: "Enter  First Password",
+                            label: AppStrings.password,
+                            hintText: AppStrings.enterPassword,
                             controller: signUpViewModel.passwordController,
                             validator: ValidatorsUtils.validatePassword,
                           ),
@@ -97,8 +96,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const SizedBox(width: 18),
                         Expanded(
                           child: CustomTextFromField(
-                            label: "Confirm password",
-                            hintText: "Confirm password",
+                            label: AppStrings.confirmPassword,
+                            hintText: AppStrings.confirmPassword,
                             controller:
                                 signUpViewModel.confirmPasswordController,
                             //validator: ValidatorsUtils.validateConfirmPassword(confirmPasswordController.text, password: passwordController.text),
@@ -108,8 +107,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 18),
                     CustomTextFromField(
-                      label: "Phone number",
-                      hintText: "Enter you Phone number  ",
+                      label: AppStrings.phone,
+                      hintText: AppStrings.enterPhone,
                       controller: signUpViewModel.phoneController,
                       validator: ValidatorsUtils.validatePhoneNumber,
                     ),
@@ -128,12 +127,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         } else if (signUpState.data != null) {
                           ScaffoldMessenger.of(
                             context,
-                          ).showSnackBar(const SnackBar(content: Text("done")));
-                          // Navigator.pushReplacementNamed();
+                          ).showSnackBar(const SnackBar(content: Text(AppStrings.accountCreatedSuccessfully)));
+                          Navigator.pushReplacementNamed(context,RoutesStrings.loginScreen,);
                         }
                       },
                       child: CustomButton(
-                        text: "SignUP",
+                        text: AppStrings.signup,
                         onPressed: validateSignUP,
                       ),
                     ),
@@ -141,12 +140,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 20),
                     Center(
                       child: Text(
-                        "Don't have an account",
-                        style: TextStyle(
-                          fontSize: 14,
-
-                          fontWeight: FontWeight.w400,
-                        ),
+                       AppStrings.doNotHaveAcc,
+                        style: AppStyles.font16BlackW400()
                       ),
                     ),
                   ],
