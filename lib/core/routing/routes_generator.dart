@@ -17,9 +17,9 @@ class RouteGenerator {
       case RoutesStrings.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case RoutesStrings.resetPasswordScreen:
-        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
+        return MaterialPageRoute(builder: (_) =>  ResetPasswordScreen());
       case RoutesStrings.otpScreen:
-        return MaterialPageRoute(builder: (_) => const OtpScreen());
+        return MaterialPageRoute(builder: (_) =>  OtpScreen());
       case RoutesStrings.homeScreen:
         return MaterialPageRoute(builder: (context) =>  HomeScreen());
       default:

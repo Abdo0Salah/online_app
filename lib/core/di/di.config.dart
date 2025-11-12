@@ -25,8 +25,16 @@ import '../../features/forget_password/domain/repo/forget_password_repo_contract
     as _i665;
 import '../../features/forget_password/domain/use_cases/forget_password_use_case.dart'
     as _i437;
-import '../../features/forget_password/presentation/view_model/forget_password_view_model.dart'
-    as _i416;
+import '../../features/forget_password/domain/use_cases/reset_password_use_case.dart'
+    as _i56;
+import '../../features/forget_password/domain/use_cases/verify_reset_code_use_case.dart'
+    as _i798;
+import '../../features/forget_password/presentation/view_model/forget_password_view_model/forget_password_view_model.dart'
+    as _i482;
+import '../../features/forget_password/presentation/view_model/reset_password_view_model/reset_password_view_model.dart'
+    as _i427;
+import '../../features/forget_password/presentation/view_model/verify_reset_code/verify_password_view_model.dart'
+    as _i0;
 import '../../features/hom_screen/data/datasources/local/get_all_subjects_local_ds_conteact.dart'
     as _i693;
 import '../../features/hom_screen/data/datasources/local/get_all_subjects_local_ds_impl.dart'
@@ -129,11 +137,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i437.ForgetPasswordUseCase>(
       () => _i437.ForgetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
     );
-    gh.factory<_i416.ForgetPasswordViewModel>(
-      () => _i416.ForgetPasswordViewModel(gh<_i437.ForgetPasswordUseCase>()),
+    gh.factory<_i56.ResetPasswordUseCase>(
+      () => _i56.ResetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
+    );
+    gh.factory<_i798.VerifyResetCodeUseCase>(
+      () =>
+          _i798.VerifyResetCodeUseCase(gh<_i665.ForgetPasswordRepoContract>()),
+    );
+    gh.factory<_i427.ResetPasswordViewModel>(
+      () => _i427.ResetPasswordViewModel(gh<_i56.ResetPasswordUseCase>()),
+    );
+    gh.factory<_i482.ForgetPasswordViewModel>(
+      () => _i482.ForgetPasswordViewModel(gh<_i437.ForgetPasswordUseCase>()),
     );
     gh.factory<_i420.LoginUseCase>(
       () => _i420.LoginUseCase(gh<_i180.LoginRepoContract>()),
+    );
+    gh.factory<_i0.VerifyPasswordViewModel>(
+      () => _i0.VerifyPasswordViewModel(gh<_i798.VerifyResetCodeUseCase>()),
     );
     gh.factory<_i225.LoginViewModel>(
       () => _i225.LoginViewModel(gh<_i420.LoginUseCase>()),
