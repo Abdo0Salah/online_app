@@ -4,8 +4,9 @@ import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/theme/colors_manager.dart';
 import 'package:online_exam_app/core/utils/validators_utils.dart';
-import 'package:online_exam_app/features/forget_password/data/models_dto/forget_password_request.dart';
-import 'package:online_exam_app/features/forget_password/presentation/view_model/forget_password_view_model.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/features/forget_password/data/models_dto/forget_password/forget_password_request.dart';
+import 'package:online_exam_app/features/forget_password/presentation/view_model/forget_password_view_model/forget_password_view_model.dart';
 import 'package:online_exam_app/features/forget_password/presentation/views/widgets/forget_password_bloc_listener.dart';
 import 'package:online_exam_app/features/login/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:online_exam_app/features/login/presentation/views/widgets/custom_text_from_field.dart';
@@ -16,13 +17,10 @@ class ForgetPasswordScreen extends StatefulWidget {
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
 }
-
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   final TextEditingController emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
   final ForgetPasswordViewModel viewModel = getIt<ForgetPasswordViewModel>();
-
   bool isButtonEnabled = false;
 
   @override
@@ -47,7 +45,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       create: (context) => viewModel,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Password", style: AppStyles.font20BlackW500()),
+          title: Text(AppStrings.password, style: AppStyles.font20BlackW500()),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -58,21 +56,19 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      "Forget Password",
-                      style: AppStyles.font16BlackW500(),
+                    Text( AppStrings.forgetPassword, style: AppStyles.font16BlackW500(),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      "Please enter your email associated to\n your account",
+                      AppStrings.pleaseEnterYourEmailAssociated,
                       style: AppStyles.font14GrayW400(),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 32),
                     CustomTextFromField(
-                      label: "Email",
-                      hintText: "Enter you email",
+                      label: AppStrings.email,
+                      hintText: AppStrings.enterEmail,
                       validator: ValidatorsUtils.validateEmail,
                       controller: emailController,
                     ),
@@ -83,7 +79,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         return CustomElevatedButton(
                           onPressed: () => isButtonEnabled ? _confirmEmail() : null,
                           color: isButtonEnabled ? ColorsManager.myBlue : ColorsManager.lightGray,
-                          child: isLoading ? _showLoading() : Text("Continue",style: AppStyles.font16WhiteW500()),
+                          child: isLoading ? _showLoading() : Text(AppStrings.kContinue,style: AppStyles.font16WhiteW500()),
                         );
                       },
                     ),
