@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format width=80
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -81,7 +81,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i644.SignUpLocalDataSourceContract>(
       () => _i345.SignUpLocalDataSourceImpl(),
     );
-    gh.lazySingleton<_i502.ApiClient>(() => _i502.ApiClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i502.ApiClient>(
+      () => _i502.ApiClient.new(gh<_i361.Dio>()),
+    );
     gh.factory<_i138.SignUpRemoteDataSourceContract>(
       () => _i287.SignupRemoteDatasourceImpl(gh<_i502.ApiClient>()),
     );

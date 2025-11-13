@@ -1,4 +1,5 @@
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
@@ -9,13 +10,16 @@ import 'package:online_exam_app/features/hom_screen/presentation/view_model/subj
 import 'package:online_exam_app/features/hom_screen/presentation/view_model/subject_states.dart';
 
 @injectable
-class SubjectViewModel extends Cubit<SubjectStates> {
+class SubjectViewModel extends Cubit<SubjectStates> with EquatableMixin{
   final GetAllSubjectsUseCases _getAllSubjectsUseCases;
   SubjectViewModel(this._getAllSubjectsUseCases)
       : super(SubjectStates());
   //will be token from local storage
   String token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmEyYWM2OGZiMTlhZDk1NWIyMzZiZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxMjkwOTY0fQ.AL_txQPhDuA_6Q7Q5hEm-7YnyrniDT2iyQ4Tu76Qdz0";
-
+  @override
+  List<Object> get props {
+    return [ state ];
+  }
   void doIntent(SubjectEvent event) {
     switch (event) {
 

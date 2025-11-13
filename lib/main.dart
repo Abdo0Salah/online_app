@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: RoutesStrings.signUpScreen,
+      initialRoute: RoutesStrings.loginScreen,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
