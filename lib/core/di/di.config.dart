@@ -125,6 +125,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i269.SubjectViewModel>(
       () => _i269.SubjectViewModel(gh<_i811.GetAllSubjectsUseCases>()),
     );
+    gh.factory<_i519.SignUpViewModel>(
+      () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
+    );
     gh.factory<_i665.ForgetPasswordRepoContract>(
       () => _i576.ForgetPasswordRepoImpl(
         gh<_i421.ForgetPasswordDataSourceRemoteContract>(),
@@ -132,9 +135,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i180.LoginRepoContract>(
       () => _i176.LoginRepoImpl(gh<_i502.LoginRemoteDatasourceContract>()),
-    );
-    gh.factory<_i519.SignUpViewModel>(
-      () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
     gh.factory<_i437.ForgetPasswordUseCase>(
       () => _i437.ForgetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
