@@ -3,7 +3,8 @@ import 'package:online_exam_app/core/theme/colors_manager.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class BuildPinCodeTextField extends StatelessWidget {
-  const BuildPinCodeTextField({super.key});
+  final void Function(String) onCompleted;
+  const BuildPinCodeTextField({super.key, required this.onCompleted});
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +12,15 @@ class BuildPinCodeTextField extends StatelessWidget {
       appContext: context,
       autoFocus: true,
       keyboardType: TextInputType.number,
-      cursorColor: Colors.black,
-      length: 4,
+      cursorColor: ColorsManager.myBlue,
+      length: 6,
       obscureText: false,
       animationType: AnimationType.scale,
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(6),
-        fieldHeight: 75,
-        fieldWidth: 70,
+        fieldHeight: 50,
+        fieldWidth: 50,
         borderWidth: 1,
         disabledColor: ColorsManager.lightBlue,
         activeColor: ColorsManager.lightBlue,
@@ -33,6 +34,7 @@ class BuildPinCodeTextField extends StatelessWidget {
       animationDuration: Duration(milliseconds: 300),
       backgroundColor: Colors.white,
       enableActiveFill: true,
+      onCompleted: onCompleted,
     );
   }
 }

@@ -3,5 +3,6 @@ class EndPoints {
   static const String forgetPassword = "api/v1/auth/forgotPassword";
   static const String signUpEndpoint = "api/v1/auth/signup";
   static const String getAllSubjectsEndpoint = "api/v1/subjects";
-
+  static const String verifyResetCode = "api/v1/auth/verifyResetCode";
+  static const String resetPassword = "api/v1/auth/resetPassword";
 }

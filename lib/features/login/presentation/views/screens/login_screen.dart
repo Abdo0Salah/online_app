@@ -4,6 +4,7 @@ import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/theme/colors_manager.dart';
 import 'package:online_exam_app/core/utils/validators_utils.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/routes_strings.dart';
 import 'package:online_exam_app/features/login/data/models_dto/login/request_login.dart';
 import 'package:online_exam_app/features/login/presentation/view_model/login_view_model.dart';
@@ -52,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          title: Text("Login", style: AppStyles.font20BlackW500()),
+          title: Text(AppStrings.login, style: AppStyles.font20BlackW500()),
         ),
         body: SafeArea(
           child: Padding(
@@ -66,16 +67,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     const SizedBox(height: 8),
                     CustomTextFromField(
-                      label: "Email",
-                      hintText: "Enter you email",
+                      label: AppStrings.email,
+                      hintText: AppStrings.enterEmail,
                       controller: emailController,
                       textInputAction: TextInputAction.next,
                       validator: ValidatorsUtils.validateEmail,
                     ),
                     const SizedBox(height: 24),
                     CustomTextFromField(
-                      label: "Password",
-                      hintText: "Enter you password ",
+                      label: AppStrings.password,
+                      hintText: AppStrings.enterPassword,
                       controller: passwordController,
                       onFieldSubmitted: (_) => validateLogin(context),
                       textInputAction: TextInputAction.done,
@@ -90,15 +91,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         return CustomElevatedButton(
                           onPressed: () => isButtonEnabled ? validateLogin(context) : null,
                           color: isButtonEnabled ? ColorsManager.myBlue : ColorsManager.lightGray,
-                          child: isLoading ? _showLoading() : Text("Login",style: AppStyles.font16WhiteW500()
+                          child: isLoading ? _showLoading() : Text(AppStrings.login,style: AppStyles.font16WhiteW500(),
                           ),
                         );
                       },
                     ),
                     const SizedBox(height: 20),
-                    const CustomTextSpanWidget(
-                      firstTitle: "Don't have an account?",
-                      secondTitle: " Sign Up",
+                     CustomTextSpanWidget(
+                      firstTitle: AppStrings.doNotHaveAcc,
+                      secondTitle: AppStrings.signup,
                       routeName: RoutesStrings.signUpScreen,
                     ),
                     const LoginBlocListener(),
