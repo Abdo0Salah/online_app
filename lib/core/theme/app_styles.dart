@@ -83,4 +83,11 @@ class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
+  static TextStyle font13BlackW400() {
+    return TextStyle(
+      fontSize: 13,
+      color: ColorsManager.myGray,
+      fontWeight: FontWeight.w400,
+    );
+  }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/theme/colors_manager.dart';
 import 'package:online_exam_app/core/values/assets_strings.dart';
-import 'package:online_exam_app/features/hom_screen/presentation/views/screens/tabs/profile_tab.dart';
-import 'package:online_exam_app/features/hom_screen/presentation/views/screens/tabs/result_tab.dart';
-import 'package:online_exam_app/features/hom_screen/presentation/views/screens/tabs/subject_tab.dart';
+import 'package:online_exam_app/features/hom_screen/presentation/subject/views/screens/tabs/profile_tab.dart';
+import 'package:online_exam_app/features/hom_screen/presentation/subject/views/screens/tabs/result_tab.dart';
+import 'package:online_exam_app/features/hom_screen/presentation/subject/views/screens/tabs/subject_tab.dart';
 
 class HomeScreen extends StatefulWidget {
    HomeScreen({super.key});

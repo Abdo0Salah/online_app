@@ -19,7 +19,6 @@ void main() {
     localDsImpl = MockGetAllSubjectsLocalDsImpl();
     remoteDsImpl = MockGetAllSubjectsRemoteDsImpl();
     mockRepo = GetAllSubjectsRepoImpl(localDsImpl, remoteDsImpl);
-    //for when
     provideDummy<BaseResponse<List<SubjectsDto>>>(
       SuccessResponse<List<SubjectsDto>>(data: []),
     );
@@ -57,10 +56,6 @@ void main() {
       test(
         "when signUp with ErrorResponse it should return Exception",
         () async {
-          List<SubjectsDto> dummySubjectDto = [
-            SubjectsDto(Id: "1", name: "Math", icon: "math.png"),
-            SubjectsDto(Id: "2", name: "Mat2h", icon: "mat2h.png"),
-          ];
           // when call
           when(remoteDsImpl.getAllSubjects("token")).thenAnswer(
             (_) async =>
