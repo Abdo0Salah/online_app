@@ -4,6 +4,7 @@ import 'package:online_exam_app/features/hom_screen/domain/models/subjectModel.d
 class SubjectStates {
   BaseState<List <SubjectModel>>? getAllSubjectsStatess;
   SubjectStates({this.getAllSubjectsStatess});
+
   SubjectStates copyWith({BaseState<List <SubjectModel>>? getAllSubjectsStates}) {
     return SubjectStates(getAllSubjectsStatess: getAllSubjectsStates ?? this.getAllSubjectsStatess);
   }

@@ -28,7 +28,7 @@ class SubjectViewModel extends Cubit<SubjectStates> {
 
   Future<void> _getAllSubjects() async {
     emit(state.copyWith(
-      getAllSubjectsStates: BaseState<List<SubjectModel>>(isLoading: true),
+      getAllSubjectsStates: BaseState<List<SubjectModel>>(requestState: RequestState.loading),
     ));
 
     BaseResponse<List<SubjectModel>> response = await _getAllSubjectsUseCases(token);
@@ -36,7 +36,7 @@ class SubjectViewModel extends Cubit<SubjectStates> {
       case SuccessResponse<List<SubjectModel>>():
         {
           emit(state.copyWith(
-            getAllSubjectsStates: BaseState<List<SubjectModel>>(data: response.data),
+            getAllSubjectsStates: BaseState<List<SubjectModel>>(data: response.data, requestState: RequestState.loaded),
           ));
         }
 
@@ -44,7 +44,8 @@ class SubjectViewModel extends Cubit<SubjectStates> {
         {
           emit(state.copyWith(
             getAllSubjectsStates: BaseState<List<SubjectModel>>(
-                errorMessage: response.error.toString()),
+                errorMessage: response.error.toString(),
+                requestState: RequestState.error),
           ));
         }
     }
