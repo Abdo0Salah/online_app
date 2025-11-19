@@ -33,10 +33,11 @@ class BaseState<T> {
 // Extension – makes emit() super clean
 // ════════════════════════════════════════════
 extension BaseStateExtension<T> on BaseState<T> {
-  BaseState<T> get init    => BaseState.init();                    // Reset to Initial
-  BaseState<T> get loading => BaseState.loading();                 // Set Loading
-  BaseState<T> loaded(T data) => BaseState.loaded(data);           // Set Success
-  BaseState<T> error(String message) => BaseState.error(message);  // Set Error
+  BaseState<T> get init => BaseState.init(); // Reset to Initial
+  BaseState<T> get loading => BaseState.loading(); // Set Loading
+  BaseState<T> loaded(T data) => BaseState.loaded(data); // Set Success
+  BaseState<T> error(String message) => BaseState.error(message); // Set Error
+}
 
 
 

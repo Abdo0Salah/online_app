@@ -97,11 +97,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i974.GetExamByIdLocalDsContract>(
       () => _i396.GetExamByIdLocalDsImpl(),
     );
-    gh.factory<_i132.GetExamByIdRemoteDsContract>(
-      () => _i161.GetExamByIdRemoteDsImpl(gh<_i502.ApiClient>()),
-    );
     gh.factory<_i353.AuthDataSourceRemoteContract>(
       () => _i195.AuthDataSourceRemoteImpl(gh<_i502.ApiClient>()),
+    );
+    gh.factory<_i132.GetExamByIdRemoteDsContract>(
+      () => _i161.GetExamByIdRemoteDsImpl(gh<_i502.ApiClient>()),
     );
     gh.factory<_i138.SignUpRemoteDataSourceContract>(
       () => _i287.SignupRemoteDatasourceImpl(gh<_i502.ApiClient>()),
@@ -157,8 +157,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i519.SignUpViewModel>(
       () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
-    gh.factory<_i519.SignUpViewModel>(
-      () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
+    gh.factory<_i892.ExamsViewModel>(
+      () => _i892.ExamsViewModel(gh<_i548.GetExamByIdUseCase>()),
     );
     gh.factory<_i1025.AuthViewModel>(
       () => _i1025.AuthViewModel(
@@ -167,41 +167,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i449.VerifyResetCodeUseCase>(),
         gh<_i169.ResetPasswordUseCase>(),
       ),
-    gh.factory<_i665.ForgetPasswordRepoContract>(
-      () => _i576.ForgetPasswordRepoImpl(
-        gh<_i421.ForgetPasswordDataSourceRemoteContract>(),
-      ),
-    );
-    gh.factory<_i892.ExamsViewModel>(
-      () => _i892.ExamsViewModel(gh<_i548.GetExamByIdUseCase>()),
-    );
-    gh.factory<_i180.LoginRepoContract>(
-      () => _i176.LoginRepoImpl(gh<_i502.LoginRemoteDatasourceContract>()),
-    );
-    gh.factory<_i437.ForgetPasswordUseCase>(
-      () => _i437.ForgetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
-    );
-    gh.factory<_i56.ResetPasswordUseCase>(
-      () => _i56.ResetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
-    );
-    gh.factory<_i798.VerifyResetCodeUseCase>(
-      () =>
-          _i798.VerifyResetCodeUseCase(gh<_i665.ForgetPasswordRepoContract>()),
-    );
-    gh.factory<_i427.ResetPasswordViewModel>(
-      () => _i427.ResetPasswordViewModel(gh<_i56.ResetPasswordUseCase>()),
-    );
-    gh.factory<_i482.ForgetPasswordViewModel>(
-      () => _i482.ForgetPasswordViewModel(gh<_i437.ForgetPasswordUseCase>()),
-    );
-    gh.factory<_i420.LoginUseCase>(
-      () => _i420.LoginUseCase(gh<_i180.LoginRepoContract>()),
-    );
-    gh.factory<_i0.VerifyPasswordViewModel>(
-      () => _i0.VerifyPasswordViewModel(gh<_i798.VerifyResetCodeUseCase>()),
-    );
-    gh.factory<_i225.LoginViewModel>(
-      () => _i225.LoginViewModel(gh<_i420.LoginUseCase>()),
     );
     return this;
   }

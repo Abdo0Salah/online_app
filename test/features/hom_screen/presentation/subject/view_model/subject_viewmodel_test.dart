@@ -49,15 +49,16 @@ void main() {
     act: (bloc) => bloc.doIntent(GetAllSubjectsEvent(token: token)),
     expect: () {
       var state = SubjectStates(
-        getAllSubjectsStates: BaseState<List<SubjectModel>>(isLoading: true),
+        getAllSubjectsStates: BaseState<List<SubjectModel>>( requestState: RequestState.loading),
       );
       return [
         state.copyWith(
-          getAllSubjectsStates: BaseState<List<SubjectModel>>(isLoading: true),
+          getAllSubjectsStates: BaseState<List<SubjectModel>>( requestState: RequestState.loading),
         ),
         state.copyWith(
           getAllSubjectsStates: BaseState<List<SubjectModel>>(
             data: subjectList,
+              requestState: RequestState.loaded
           ),
         ),
       ];
@@ -78,15 +79,16 @@ void main() {
     act: (bloc) => bloc.doIntent(GetAllSubjectsEvent(token: token)),
     expect: () {
       var state = SubjectStates(
-        getAllSubjectsStates: BaseState<List<SubjectModel>>(isLoading: true),
+        getAllSubjectsStates: BaseState<List<SubjectModel>>( requestState: RequestState.loading),
       );
       return [
         state.copyWith(
-          getAllSubjectsStates: BaseState<List<SubjectModel>>(isLoading: true),
+          getAllSubjectsStates: BaseState<List<SubjectModel>>( requestState: RequestState.loading),
         ),
         state.copyWith(
           getAllSubjectsStates: BaseState<List<SubjectModel>>(
             errorMessage: exception.toString(),
+              requestState: RequestState.error
           ),
         ),
       ];

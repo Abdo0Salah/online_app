@@ -36,7 +36,7 @@ class ExamsViewModel extends Cubit<ExamsStates> with EquatableMixin{
   Future<void> _getAllExams() async {
 
     emit(state.copyWith(
-      getAllExamsStates: BaseState<List<ExamsModel>>(isLoading: true),
+      getAllExamsStates: BaseState<List<ExamsModel>>(requestState: RequestState.loading),
     ));
     await storage.read(key: 'selectedSubjectId' ).then((value) {
         subjectId=value;
@@ -46,7 +46,7 @@ class ExamsViewModel extends Cubit<ExamsStates> with EquatableMixin{
       case SuccessResponse<List<ExamsModel>>():
         {
           emit(state.copyWith(
-            getAllExamsStates: BaseState<List<ExamsModel>>(data: response.data),
+            getAllExamsStates: BaseState<List<ExamsModel>>(data: response.data, requestState: RequestState.loaded),
           ));
 
         }
@@ -55,7 +55,7 @@ class ExamsViewModel extends Cubit<ExamsStates> with EquatableMixin{
         {
           emit(state.copyWith(
             getAllExamsStates: BaseState<List<ExamsModel>>(
-                errorMessage: response.error.toString()),
+                errorMessage: response.error.toString(), requestState: RequestState.error),
           ));
         }
     }

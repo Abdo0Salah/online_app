@@ -4,9 +4,6 @@ import 'package:online_exam_app/features/sign_up/presentation/views/screens/sign
 import 'package:online_exam_app/features/auth/presentation/views/screens/forget_password_screen.dart';
 import 'package:online_exam_app/features/auth/presentation/views/screens/otp_screen.dart';
 import 'package:online_exam_app/features/auth/presentation/views/screens/reset_password_screen.dart';
-import 'package:online_exam_app/features/forget_password/presentation/views/screens/forget_password_screen.dart';
-import 'package:online_exam_app/features/forget_password/presentation/views/screens/otp_screen.dart';
-import 'package:online_exam_app/features/forget_password/presentation/views/screens/reset_password_screen.dart';
 import 'package:online_exam_app/features/hom_screen/presentation/exams/view/screens/ExamsScreen.dart';
 import 'package:online_exam_app/features/auth/presentation/views/screens/login_screen.dart';
 

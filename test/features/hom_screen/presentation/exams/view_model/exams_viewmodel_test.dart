@@ -65,14 +65,14 @@ void main() {
     expect: () {
       var state = ExamsStates(
         ///
-        getAllExamsStates: BaseState<List<ExamsModel>>(isLoading: true),
+        getAllExamsStates: BaseState<List<ExamsModel>>( requestState: RequestState.loading),
       );
       return [
         state.copyWith(
-          getAllExamsStates: BaseState<List<ExamsModel>>(isLoading: true),
+          getAllExamsStates: BaseState<List<ExamsModel>>( requestState: RequestState.loading),
         ),
         state.copyWith(
-          getAllExamsStates: BaseState<List<ExamsModel>>(data: examsList),
+          getAllExamsStates: BaseState<List<ExamsModel>>(data: examsList, requestState: RequestState.loaded),
         ),
       ];
     },
@@ -96,15 +96,15 @@ void main() {
         bloc.doIntent(GetAllExamsEvent(token: token, subjectId: subjectId)),
     expect: () {
       var state = ExamsStates(
-        getAllExamsStates: BaseState<List<ExamsModel>>(isLoading: true),
+        getAllExamsStates: BaseState<List<ExamsModel>>( requestState: RequestState.loading),
       );
       return [
         state.copyWith(
-          getAllExamsStates: BaseState<List<ExamsModel>>(isLoading: true),
+          getAllExamsStates: BaseState<List<ExamsModel>>( requestState: RequestState.loading),
         ),
         state.copyWith(
           getAllExamsStates: BaseState<List<ExamsModel>>(
-            errorMessage: exception.toString(),
+            errorMessage: exception.toString(),requestState: RequestState.error
           ),
         ),
       ];
