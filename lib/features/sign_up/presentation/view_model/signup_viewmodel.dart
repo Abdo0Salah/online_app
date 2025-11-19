@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -10,7 +11,8 @@ import 'package:online_exam_app/features/sign_up/presentation/view_model/signup_
 import '../../domain/usecases/signup_usecase.dart';
 
 @injectable
-class SignUpViewModel extends Cubit<SignupStates> {
+class SignUpViewModel extends Cubit<SignupStates> with EquatableMixin {
+
   TextEditingController emailController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
@@ -18,10 +20,14 @@ class SignUpViewModel extends Cubit<SignupStates> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  SignUpUseCase signUpUseCase;
+  SignUpUseCase _signUpUseCase;
 
   //@Factory
-  SignUpViewModel(this.signUpUseCase) : super(SignupStates());
+  SignUpViewModel(this._signUpUseCase) : super(SignupStates());
+  @override
+  List<Object> get props {
+    return [ state ];
+  }
   void doIntent(SignupEvent event) {
     switch (event) {
       case SignUpEvent():
@@ -31,7 +37,7 @@ class SignUpViewModel extends Cubit<SignupStates> {
 
   void _signUp(UserRequest userRequest) async {
     emit(state.copyWith(signUpState: BaseState<UserModel>(requestState: RequestState.loading)));
-    BaseResponse<UserModel> response = await signUpUseCase(userRequest);
+    BaseResponse<UserModel> response = await _signUpUseCase(userRequest);
     switch (response) {
       case SuccessResponse<UserModel>():
         // is State Loaded ?

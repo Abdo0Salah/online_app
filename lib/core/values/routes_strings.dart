@@ -5,5 +5,7 @@ class RoutesStrings {
   static const String resetPasswordScreen = "/resetPasswordScreen";
   static const String otpScreen = "/otpScreen";
   static const String homeScreen = "/homeScreen";
+  static const String examsScreen = "/examsScreen";
+
 
 }

@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format width=80
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -34,18 +34,34 @@ import '../../features/hom_screen/data/datasources/local/get_all_subjects_local_
     as _i693;
 import '../../features/hom_screen/data/datasources/local/get_all_subjects_local_ds_impl.dart'
     as _i318;
+import '../../features/hom_screen/data/datasources/local/get_exam_by_id_local_ds_contract.dart'
+    as _i974;
+import '../../features/hom_screen/data/datasources/local/get_exam_by_id_local_ds_impl.dart'
+    as _i396;
 import '../../features/hom_screen/data/datasources/remote/get_all_subjects_remote_ds_conteact.dart'
     as _i205;
 import '../../features/hom_screen/data/datasources/remote/get_all_subjects_remote_ds_impl..dart'
     as _i265;
+import '../../features/hom_screen/data/datasources/remote/get_exam_by_id_remote_ds_contract.dart'
+    as _i132;
+import '../../features/hom_screen/data/datasources/remote/get_exam_by_id_remote_ds_impl.dart'
+    as _i161;
 import '../../features/hom_screen/data/repo/get_all_subjects_repo_impl.dart'
     as _i721;
+import '../../features/hom_screen/data/repo/get_exam_by_id_repo_impl.dart'
+    as _i776;
 import '../../features/hom_screen/domain/repo/get_all_subjects_repo_contrct.dart'
     as _i51;
+import '../../features/hom_screen/domain/repo/get_exam_by_id_repo_contract.dart'
+    as _i560;
 import '../../features/hom_screen/domain/usecases/get_all_subjects_use_cases.dart'
     as _i811;
-import '../../features/hom_screen/presentation/view_model/subject_viewmodel.dart'
-    as _i269;
+import '../../features/hom_screen/domain/usecases/get_exam_by_id_use_case.dart'
+    as _i548;
+import '../../features/hom_screen/presentation/exams/view_model/exams_viewmodel.dart'
+    as _i892;
+import '../../features/hom_screen/presentation/subject/view_model/subject_viewmodel.dart'
+    as _i641;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_contract.dart'
     as _i644;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_impl.dart'
@@ -75,7 +91,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i644.SignUpLocalDataSourceContract>(
       () => _i345.SignUpLocalDataSourceImpl(),
     );
-    gh.lazySingleton<_i502.ApiClient>(() => _i502.ApiClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i502.ApiClient>(
+      () => _i502.ApiClient.new(gh<_i361.Dio>()),
+    );
+    gh.factory<_i974.GetExamByIdLocalDsContract>(
+      () => _i396.GetExamByIdLocalDsImpl(),
+    );
+    gh.factory<_i132.GetExamByIdRemoteDsContract>(
+      () => _i161.GetExamByIdRemoteDsImpl(gh<_i502.ApiClient>()),
+    );
     gh.factory<_i353.AuthDataSourceRemoteContract>(
       () => _i195.AuthDataSourceRemoteImpl(gh<_i502.ApiClient>()),
     );
@@ -100,6 +124,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i811.GetAllSubjectsUseCases>(
       () => _i811.GetAllSubjectsUseCases(gh<_i51.GetAllSubjectsRepoContract>()),
     );
+    gh.factory<_i560.GetExamByIdRepoContract>(
+      () => _i776.GetExamByIdRepoImpl(
+        gh<_i132.GetExamByIdRemoteDsContract>(),
+        gh<_i974.GetExamByIdLocalDsContract>(),
+      ),
+    );
     gh.factory<_i990.AuthRepoContract>(
       () => _i984.AuthRepoImpl(gh<_i353.AuthDataSourceRemoteContract>()),
     );
@@ -118,8 +148,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i449.VerifyResetCodeUseCase>(
       () => _i449.VerifyResetCodeUseCase(gh<_i990.AuthRepoContract>()),
     );
-    gh.factory<_i269.SubjectViewModel>(
-      () => _i269.SubjectViewModel(gh<_i811.GetAllSubjectsUseCases>()),
+    gh.factory<_i548.GetExamByIdUseCase>(
+      () => _i548.GetExamByIdUseCase(gh<_i560.GetExamByIdRepoContract>()),
+    );
+    gh.factory<_i641.SubjectViewModel>(
+      () => _i641.SubjectViewModel(gh<_i811.GetAllSubjectsUseCases>()),
+    );
+    gh.factory<_i519.SignUpViewModel>(
+      () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
     gh.factory<_i519.SignUpViewModel>(
       () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
@@ -131,6 +167,41 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i449.VerifyResetCodeUseCase>(),
         gh<_i169.ResetPasswordUseCase>(),
       ),
+    gh.factory<_i665.ForgetPasswordRepoContract>(
+      () => _i576.ForgetPasswordRepoImpl(
+        gh<_i421.ForgetPasswordDataSourceRemoteContract>(),
+      ),
+    );
+    gh.factory<_i892.ExamsViewModel>(
+      () => _i892.ExamsViewModel(gh<_i548.GetExamByIdUseCase>()),
+    );
+    gh.factory<_i180.LoginRepoContract>(
+      () => _i176.LoginRepoImpl(gh<_i502.LoginRemoteDatasourceContract>()),
+    );
+    gh.factory<_i437.ForgetPasswordUseCase>(
+      () => _i437.ForgetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
+    );
+    gh.factory<_i56.ResetPasswordUseCase>(
+      () => _i56.ResetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
+    );
+    gh.factory<_i798.VerifyResetCodeUseCase>(
+      () =>
+          _i798.VerifyResetCodeUseCase(gh<_i665.ForgetPasswordRepoContract>()),
+    );
+    gh.factory<_i427.ResetPasswordViewModel>(
+      () => _i427.ResetPasswordViewModel(gh<_i56.ResetPasswordUseCase>()),
+    );
+    gh.factory<_i482.ForgetPasswordViewModel>(
+      () => _i482.ForgetPasswordViewModel(gh<_i437.ForgetPasswordUseCase>()),
+    );
+    gh.factory<_i420.LoginUseCase>(
+      () => _i420.LoginUseCase(gh<_i180.LoginRepoContract>()),
+    );
+    gh.factory<_i0.VerifyPasswordViewModel>(
+      () => _i0.VerifyPasswordViewModel(gh<_i798.VerifyResetCodeUseCase>()),
+    );
+    gh.factory<_i225.LoginViewModel>(
+      () => _i225.LoginViewModel(gh<_i420.LoginUseCase>()),
     );
     return this;
   }

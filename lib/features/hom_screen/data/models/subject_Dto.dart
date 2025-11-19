@@ -30,9 +30,9 @@ class SubjectsDto {
 
 
   SubjectModel toDomain() =>
-      SubjectModel(name: name ?? "",
-        icon:icon ?? "",
-        Id: Id ?? "",);
+      SubjectModel(name: name ,
+        icon:icon ,
+        Id: Id ,);
 }
 
 

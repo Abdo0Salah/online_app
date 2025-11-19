@@ -1,3 +1,4 @@
+
 enum RequestState { init, loading, loaded, error }
 /// Generic state for any async operation (API call, form submission, etc.)
 class BaseState<T> {
@@ -28,7 +29,6 @@ class BaseState<T> {
   bool get isLoaded  => requestState == RequestState.loaded;  // Success with data
   bool get isError   => requestState == RequestState.error;   // Something went wrong
 }
-
 // ════════════════════════════════════════════
 // Extension – makes emit() super clean
 // ════════════════════════════════════════════
@@ -37,8 +37,6 @@ extension BaseStateExtension<T> on BaseState<T> {
   BaseState<T> get loading => BaseState.loading();                 // Set Loading
   BaseState<T> loaded(T data) => BaseState.loaded(data);           // Set Success
   BaseState<T> error(String message) => BaseState.error(message);  // Set Error
-}
-
 
 
 

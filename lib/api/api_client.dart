@@ -9,6 +9,7 @@ import 'package:online_exam_app/features/auth/data/models_dto/reset_password/res
 import 'package:online_exam_app/features/auth/data/models_dto/reset_password/reset_password_response.dart';
 import 'package:online_exam_app/features/auth/data/models_dto/verify_reset_code/verify_reset_code_request.dart';
 import 'package:online_exam_app/features/auth/data/models_dto/verify_reset_code/verify_reset_code_response.dart';
+import 'package:online_exam_app/features/hom_screen/data/models/exams_on_subject_response.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/subject_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/signup_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
@@ -40,5 +41,11 @@ abstract class ApiClient {
 
   @GET(EndPoints.getAllSubjectsEndpoint)
   Future<SubjectResponse> getAllSubjects(@Header('token') String token);
+
+  @GET(EndPoints.getAllExamsBySubject)
+  Future<ExamsOnSubjectResponse> getAllExamsBySubject(@Header('token') String token,@Header('subject') String subjectId);
+
+
+
 
 }
