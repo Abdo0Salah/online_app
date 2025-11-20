@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +41,7 @@ class SubjectViewModel extends Cubit<SubjectStates> with EquatableMixin{
 
   Future<void> _getAllSubjects() async {
     emit(state.copyWith(
-      getAllSubjectsStates: BaseState<List<SubjectModel>>(isLoading: true),
+      getAllSubjectsStates: BaseState<List<SubjectModel>>(requestState: RequestState.loading),
     ));
 
     BaseResponse<List<SubjectModel>> response = await _getAllSubjectsUseCases(token);
@@ -50,7 +49,7 @@ class SubjectViewModel extends Cubit<SubjectStates> with EquatableMixin{
       case SuccessResponse<List<SubjectModel>>():
         {
           emit(state.copyWith(
-            getAllSubjectsStates: BaseState<List<SubjectModel>>(data: response.data),
+            getAllSubjectsStates: BaseState<List<SubjectModel>>(data: response.data, requestState: RequestState.loaded),
           ));
         }
 
@@ -58,7 +57,8 @@ class SubjectViewModel extends Cubit<SubjectStates> with EquatableMixin{
         {
           emit(state.copyWith(
             getAllSubjectsStates: BaseState<List<SubjectModel>>(
-                errorMessage: response.error.toString()),
+                errorMessage: response.error.toString(),
+                requestState: RequestState.error),
           ));
         }
     }
@@ -66,7 +66,7 @@ class SubjectViewModel extends Cubit<SubjectStates> with EquatableMixin{
 
   void _subjectClicked(SubjectModel subject, context)async {
     emit(state.copyWith(
-      getAllSubjectsStates: BaseState<List<SubjectModel>>(data: state.getAllSubjectsStates?.data),
+      getAllSubjectsStates: BaseState<List<SubjectModel>>(data: state.getAllSubjectsStates?.data, requestState: RequestState.loaded),
     ));
       await storage.write(key: 'selectedSubjectId', value: subject.Id);
     await storage.write(key: 'selectedSubjectName', value: subject.name);

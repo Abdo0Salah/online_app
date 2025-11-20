@@ -59,11 +59,11 @@ void main() {
     act: (bloc) => bloc.doIntent(SignUpEvent(userRequest: dummyRequest)),
     expect: () {
       var state = SignupStates(
-        signUpStates: BaseState<UserModel>(isLoading: true),
+        signUpStates: BaseState<UserModel>( requestState: RequestState.loading),
       );
       return [
-        state.copyWith(signUpState: BaseState<UserModel>(isLoading: true)),
-        state.copyWith(signUpState: BaseState<UserModel>(data: dummyUser)),
+        state.copyWith(signUpState: BaseState<UserModel>( requestState: RequestState.loading)),
+        state.copyWith(signUpState: BaseState<UserModel>(data: dummyUser,requestState: RequestState.loaded)),
       ];
     },
     verify: (_) {
@@ -83,13 +83,14 @@ void main() {
     act: (bloc) => bloc.doIntent(SignUpEvent(userRequest: dummyRequest)),
     expect: () {
       var state = SignupStates(
-        signUpStates: BaseState<UserModel>(isLoading: true),
+        signUpStates: BaseState<UserModel>( requestState: RequestState.loading),
       );
       return [
-        state.copyWith(signUpState: BaseState<UserModel>(isLoading: true)),
+        state.copyWith(signUpState: BaseState<UserModel>( requestState: RequestState.loading)),
         state.copyWith(
           signUpState: BaseState<UserModel>(
             errorMessage: "Exception: Signup Failed",
+              requestState: RequestState.error
           ),
         ),
       ];

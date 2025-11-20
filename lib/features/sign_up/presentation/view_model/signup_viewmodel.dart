@@ -36,16 +36,16 @@ class SignUpViewModel extends Cubit<SignupStates> with EquatableMixin {
   }
 
   void _signUp(UserRequest userRequest) async {
-    emit(state.copyWith(signUpState: BaseState<UserModel>(isLoading: true)));
+    emit(state.copyWith(signUpState: BaseState<UserModel>(requestState: RequestState.loading)));
     BaseResponse<UserModel> response = await _signUpUseCase(userRequest);
     switch (response) {
       case SuccessResponse<UserModel>():
-        emit(state.copyWith(signUpState: BaseState(data: response.data)))
-        ;
+        // is State Loaded ?
+        emit(state.copyWith(signUpState: BaseState(data: response.data,requestState: RequestState.loaded)));
       case ErrorResponse<UserModel>():
         emit(
           state.copyWith(
-            signUpState: BaseState(errorMessage: response.error.toString()),
+            signUpState: BaseState(errorMessage: response.error.toString(), requestState: RequestState.error),
           ),
         );
     }

@@ -15,26 +15,21 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../api/api_client.dart' as _i502;
 import '../../api/module.dart' as _i77;
-import '../../features/forget_password/data/data_sources/remote/forget_password_data_source_remote_contract.dart'
-    as _i421;
-import '../../features/forget_password/data/data_sources/remote/forget_password_data_source_remote_impl.dart'
-    as _i423;
-import '../../features/forget_password/data/repo/forget_password_repo_impl.dart'
-    as _i576;
-import '../../features/forget_password/domain/repo/forget_password_repo_contract.dart'
-    as _i665;
-import '../../features/forget_password/domain/use_cases/forget_password_use_case.dart'
-    as _i437;
-import '../../features/forget_password/domain/use_cases/reset_password_use_case.dart'
-    as _i56;
-import '../../features/forget_password/domain/use_cases/verify_reset_code_use_case.dart'
-    as _i798;
-import '../../features/forget_password/presentation/view_model/forget_password_view_model/forget_password_view_model.dart'
-    as _i482;
-import '../../features/forget_password/presentation/view_model/reset_password_view_model/reset_password_view_model.dart'
-    as _i427;
-import '../../features/forget_password/presentation/view_model/verify_reset_code/verify_password_view_model.dart'
-    as _i0;
+import '../../features/auth/data/data_sources/remote/auth_data_source_remote_contract.dart'
+    as _i353;
+import '../../features/auth/data/data_sources/remote/auth_data_source_remote_impl.dart'
+    as _i195;
+import '../../features/auth/data/repo/auth_repo_impl.dart' as _i984;
+import '../../features/auth/domain/repo/auth_repo_contract.dart' as _i990;
+import '../../features/auth/domain/use_cases/forget_password_use_case.dart'
+    as _i483;
+import '../../features/auth/domain/use_cases/login_usecase.dart' as _i1012;
+import '../../features/auth/domain/use_cases/reset_password_use_case.dart'
+    as _i169;
+import '../../features/auth/domain/use_cases/verify_reset_code_use_case.dart'
+    as _i449;
+import '../../features/auth/presentation/view_model/auth_view_model.dart'
+    as _i1025;
 import '../../features/hom_screen/data/datasources/local/get_all_subjects_local_ds_conteact.dart'
     as _i693;
 import '../../features/hom_screen/data/datasources/local/get_all_subjects_local_ds_impl.dart'
@@ -67,15 +62,6 @@ import '../../features/hom_screen/presentation/exams/view_model/exams_viewmodel.
     as _i892;
 import '../../features/hom_screen/presentation/subject/view_model/subject_viewmodel.dart'
     as _i641;
-import '../../features/login/data/datasources/remote/login_remote_datasource_contract.dart'
-    as _i502;
-import '../../features/login/data/datasources/remote/login_remote_datasource_impl.dart'
-    as _i1069;
-import '../../features/login/data/repo/login_repo_impl.dart' as _i176;
-import '../../features/login/domain/repo/login_repo_contract.dart' as _i180;
-import '../../features/login/domain/usecases/login_usecase.dart' as _i420;
-import '../../features/login/presentation/view_model/login_view_model.dart'
-    as _i225;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_contract.dart'
     as _i644;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_impl.dart'
@@ -111,6 +97,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i974.GetExamByIdLocalDsContract>(
       () => _i396.GetExamByIdLocalDsImpl(),
     );
+    gh.factory<_i353.AuthDataSourceRemoteContract>(
+      () => _i195.AuthDataSourceRemoteImpl(gh<_i502.ApiClient>()),
+    );
     gh.factory<_i132.GetExamByIdRemoteDsContract>(
       () => _i161.GetExamByIdRemoteDsImpl(gh<_i502.ApiClient>()),
     );
@@ -141,14 +130,23 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i974.GetExamByIdLocalDsContract>(),
       ),
     );
-    gh.factory<_i502.LoginRemoteDatasourceContract>(
-      () => _i1069.LoginRemoteDatasourceImpl(gh<_i502.ApiClient>()),
-    );
-    gh.factory<_i421.ForgetPasswordDataSourceRemoteContract>(
-      () => _i423.ForgetPasswordDataSourceRemoteImpl(gh<_i502.ApiClient>()),
+    gh.factory<_i990.AuthRepoContract>(
+      () => _i984.AuthRepoImpl(gh<_i353.AuthDataSourceRemoteContract>()),
     );
     gh.factory<_i5.SignUpUseCase>(
       () => _i5.SignUpUseCase(gh<_i339.SignUpRepoContract>()),
+    );
+    gh.factory<_i483.ForgetPasswordUseCase>(
+      () => _i483.ForgetPasswordUseCase(gh<_i990.AuthRepoContract>()),
+    );
+    gh.factory<_i1012.LoginUseCase>(
+      () => _i1012.LoginUseCase(gh<_i990.AuthRepoContract>()),
+    );
+    gh.factory<_i169.ResetPasswordUseCase>(
+      () => _i169.ResetPasswordUseCase(gh<_i990.AuthRepoContract>()),
+    );
+    gh.factory<_i449.VerifyResetCodeUseCase>(
+      () => _i449.VerifyResetCodeUseCase(gh<_i990.AuthRepoContract>()),
     );
     gh.factory<_i548.GetExamByIdUseCase>(
       () => _i548.GetExamByIdUseCase(gh<_i560.GetExamByIdRepoContract>()),
@@ -159,41 +157,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i519.SignUpViewModel>(
       () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
-    gh.factory<_i665.ForgetPasswordRepoContract>(
-      () => _i576.ForgetPasswordRepoImpl(
-        gh<_i421.ForgetPasswordDataSourceRemoteContract>(),
-      ),
-    );
     gh.factory<_i892.ExamsViewModel>(
       () => _i892.ExamsViewModel(gh<_i548.GetExamByIdUseCase>()),
     );
-    gh.factory<_i180.LoginRepoContract>(
-      () => _i176.LoginRepoImpl(gh<_i502.LoginRemoteDatasourceContract>()),
-    );
-    gh.factory<_i437.ForgetPasswordUseCase>(
-      () => _i437.ForgetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
-    );
-    gh.factory<_i56.ResetPasswordUseCase>(
-      () => _i56.ResetPasswordUseCase(gh<_i665.ForgetPasswordRepoContract>()),
-    );
-    gh.factory<_i798.VerifyResetCodeUseCase>(
-      () =>
-          _i798.VerifyResetCodeUseCase(gh<_i665.ForgetPasswordRepoContract>()),
-    );
-    gh.factory<_i427.ResetPasswordViewModel>(
-      () => _i427.ResetPasswordViewModel(gh<_i56.ResetPasswordUseCase>()),
-    );
-    gh.factory<_i482.ForgetPasswordViewModel>(
-      () => _i482.ForgetPasswordViewModel(gh<_i437.ForgetPasswordUseCase>()),
-    );
-    gh.factory<_i420.LoginUseCase>(
-      () => _i420.LoginUseCase(gh<_i180.LoginRepoContract>()),
-    );
-    gh.factory<_i0.VerifyPasswordViewModel>(
-      () => _i0.VerifyPasswordViewModel(gh<_i798.VerifyResetCodeUseCase>()),
-    );
-    gh.factory<_i225.LoginViewModel>(
-      () => _i225.LoginViewModel(gh<_i420.LoginUseCase>()),
+    gh.factory<_i1025.AuthViewModel>(
+      () => _i1025.AuthViewModel(
+        gh<_i1012.LoginUseCase>(),
+        gh<_i483.ForgetPasswordUseCase>(),
+        gh<_i449.VerifyResetCodeUseCase>(),
+        gh<_i169.ResetPasswordUseCase>(),
+      ),
     );
     return this;
   }

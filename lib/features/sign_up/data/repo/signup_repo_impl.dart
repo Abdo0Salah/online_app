@@ -14,9 +14,7 @@ class SignUpRepoImpl implements SignUpRepoContract {
   SignUpRepoImpl(this.signUpLocalDataSource, this.signUpRemoteDataSource);
   @override
   Future<BaseResponse<UserModel>> signUp(UserRequest request) async {
-    BaseResponse<UserDto> userDtoResponse = await signUpRemoteDataSource.signUp(
-      request,
-    );
+    BaseResponse<UserDto> userDtoResponse = await signUpRemoteDataSource.signUp(request);
     switch (userDtoResponse) {
       case SuccessResponse<UserDto>():
         {
