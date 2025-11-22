@@ -1,6 +1,4 @@
-import 'package:injectable/injectable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 part 'user_request.g.dart';
 
 @JsonSerializable()

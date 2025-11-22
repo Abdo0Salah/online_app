@@ -22,7 +22,6 @@ class SignUpViewModel extends Cubit<SignupStates> with EquatableMixin {
   TextEditingController phoneController = TextEditingController();
   SignUpUseCase _signUpUseCase;
 
-  //@Factory
   SignUpViewModel(this._signUpUseCase) : super(SignupStates());
   @override
   List<Object> get props {
@@ -31,7 +30,7 @@ class SignUpViewModel extends Cubit<SignupStates> with EquatableMixin {
   void doIntent(SignupEvent event) {
     switch (event) {
       case SignUpEvent():
-        _signUp(event.userRequest!);
+        _signUp(event.userRequest);
     }
   }
 
