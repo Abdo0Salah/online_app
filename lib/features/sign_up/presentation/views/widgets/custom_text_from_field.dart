@@ -34,7 +34,7 @@ class CustomTextFromField extends StatelessWidget {
       validator: validator,
       decoration: InputDecoration(
         isDense: true,
-        contentPadding: EdgeInsets.all(16),
+        contentPadding: const EdgeInsets.all(16),
         hintText: hintText,
         hintStyle: hintStyle ?? TextStyle(
             fontSize: 14,

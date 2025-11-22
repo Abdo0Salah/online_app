@@ -19,7 +19,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
     } catch (e) {
-      return ErrorResponse<List<SubjectsDto>>(error: e as Exception);
+      return ErrorResponse<List<SubjectsDto>>(error: e is Exception ? e : Exception(e.toString()));
     }
   }
   }

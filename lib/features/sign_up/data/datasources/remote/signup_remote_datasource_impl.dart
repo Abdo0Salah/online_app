@@ -18,7 +18,7 @@ class SignupRemoteDatasourceImpl implements SignUpRemoteDataSourceContract {
       UserDto user = signupResponse.userDto ?? UserDto();
       return SuccessResponse<UserDto>(data: user);
     } catch (e) {
-      return ErrorResponse<UserDto>(error: e as Exception);
+      return ErrorResponse<UserDto>(error: e is Exception ? e : Exception(e.toString()));
     }
   }
 }

@@ -19,7 +19,7 @@ class ValidatorsUtils {
     } else if (int.tryParse(text.trim()) == null) {
       return 'Enter Numbers Only';
     } else if (text.trim().length != 11) {
-      return 'Enter Value Must Equal 11 Digit';
+      return 'Phone number must be exactly 11 digits';
     } else {
       return null;
     }
@@ -29,7 +29,7 @@ class ValidatorsUtils {
     if (text == null || text.isEmpty) {
       return 'This Field is Required';
     } else if (text.length < 8 || !passwordRegex.hasMatch(text) ) {
-      return 'Strong Password Please';
+      return 'Password must be at least 8 characters long and contain both letters and numbers';
     } else {
       return null;
     }
@@ -38,7 +38,7 @@ class ValidatorsUtils {
     if (text == null || text.isEmpty) {
       return 'This Field is Required';
     } else if (text != password) {
-      return 'Not Same Password';
+      return 'Passwords do not match';
     } else {
       return null;
     }

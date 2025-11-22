@@ -1,7 +1,9 @@
 
+import 'package:equatable/equatable.dart' show EquatableMixin;
+
 enum RequestState { init, loading, loaded, error }
 /// Generic state for any async operation (API call, form submission, etc.)
-class BaseState<T> {
+class BaseState<T>with EquatableMixin {
   /// Current status of the operation
   final RequestState requestState;
 
@@ -27,7 +29,13 @@ class BaseState<T> {
   bool get isInitial => requestState == RequestState.init;    // Still in initial state
   bool get isLoading => requestState == RequestState.loading; // Currently loading
   bool get isLoaded  => requestState == RequestState.loaded;  // Success with data
-  bool get isError   => requestState == RequestState.error;   // Something went wrong
+  bool get isError   => requestState == RequestState.error;
+
+  @override
+  // TODO: implement props
+  List<Object> get props {
+    return [ requestState, errorMessage ?? '', data ?? ''];
+  } // Something went wrong
 }
 // ════════════════════════════════════════════
 // Extension – makes emit() super clean

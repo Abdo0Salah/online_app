@@ -17,7 +17,7 @@ class GetExamByIdRemoteDsImpl implements GetExamByIdRemoteDsContract {
     return SuccessResponse<List<ExamsDto>>(data: examsDto);
 
     }catch (e){
-      return ErrorResponse<List<ExamsDto>>(error: e as Exception);
+      return ErrorResponse<List<ExamsDto>>(error: e is Exception ? e : Exception(e.toString()));
     }
 
 
