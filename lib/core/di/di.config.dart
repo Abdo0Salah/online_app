@@ -62,6 +62,22 @@ import '../../features/hom_screen/presentation/exams/view_model/exams_viewmodel.
     as _i892;
 import '../../features/hom_screen/presentation/subject/view_model/subject_viewmodel.dart'
     as _i641;
+import '../../features/profile/data/datasources/local/get_profile_data_local_data_source_impl.dart'
+    as _i160;
+import '../../features/profile/data/datasources/local/get_profile_data_locale_data_source_contract.dart'
+    as _i99;
+import '../../features/profile/data/datasources/remote/get_profile_data_remote_data_source_contract.dart'
+    as _i409;
+import '../../features/profile/data/datasources/remote/get_profile_data_remote_data_source_impl.dart'
+    as _i194;
+import '../../features/profile/data/repo/get_profile_data_repo_impl.dart'
+    as _i512;
+import '../../features/profile/domain/repo/get_profile_data_repo_contract.dart'
+    as _i127;
+import '../../features/profile/domain/usecases/get_user_data_usecase.dart'
+    as _i437;
+import '../../features/profile/presentation/view_model/profile_viewmodel.dart'
+    as _i987;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_contract.dart'
     as _i644;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_impl.dart'
@@ -100,6 +116,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i353.AuthDataSourceRemoteContract>(
       () => _i195.AuthDataSourceRemoteImpl(gh<_i502.ApiClient>()),
     );
+    gh.factory<_i99.GetProfileDataLocalDataSourceContract>(
+      () => _i160.GetProfileDataLocalDataSourceImpl(),
+    );
     gh.factory<_i132.GetExamByIdRemoteDsContract>(
       () => _i161.GetExamByIdRemoteDsImpl(gh<_i502.ApiClient>()),
     );
@@ -114,6 +133,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i205.GetAllSubjectsRemoteDsContract>(
       () => _i265.GetAllSubjectsRemoteDsImpl(gh<_i502.ApiClient>()),
+    );
+    gh.factory<_i409.GetProfileDataRemoteDataSourceContract>(
+      () => _i194.GetProfileDataRemoteDataSourceImpl(gh<_i502.ApiClient>()),
     );
     gh.factory<_i51.GetAllSubjectsRepoContract>(
       () => _i721.GetAllSubjectsRepoImpl(
@@ -132,6 +154,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i990.AuthRepoContract>(
       () => _i984.AuthRepoImpl(gh<_i353.AuthDataSourceRemoteContract>()),
+    );
+    gh.factory<_i127.GetProfileDataRepoContract>(
+      () => _i512.GetProfileDataRepoImpl(
+        gh<_i409.GetProfileDataRemoteDataSourceContract>(),
+        gh<_i99.GetProfileDataLocalDataSourceContract>(),
+      ),
     );
     gh.factory<_i5.SignUpUseCase>(
       () => _i5.SignUpUseCase(gh<_i339.SignUpRepoContract>()),
@@ -156,6 +184,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i519.SignUpViewModel>(
       () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
+    );
+    gh.factory<_i437.GetUserDataUseCase>(
+      () => _i437.GetUserDataUseCase(gh<_i127.GetProfileDataRepoContract>()),
+    );
+    gh.factory<_i987.ProfileViewmodel>(
+      () => _i987.ProfileViewmodel(gh<_i437.GetUserDataUseCase>()),
     );
     gh.factory<_i892.ExamsViewModel>(
       () => _i892.ExamsViewModel(gh<_i548.GetExamByIdUseCase>()),

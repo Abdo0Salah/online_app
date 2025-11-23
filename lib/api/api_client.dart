@@ -11,6 +11,7 @@ import 'package:online_exam_app/features/auth/data/models_dto/verify_reset_code/
 import 'package:online_exam_app/features/auth/data/models_dto/verify_reset_code/verify_reset_code_response.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/exams_on_subject_response.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/subject_response.dart';
+import 'package:online_exam_app/features/profile/data/models/user_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/signup_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
 import 'package:retrofit/retrofit.dart';
@@ -45,6 +46,8 @@ abstract class ApiClient {
   @GET(EndPoints.getAllExamsBySubject)
   Future<ExamsOnSubjectResponse> getAllExamsBySubject(@Header('token') String token,@Header('subject') String subjectId);
 
+  @GET(EndPoints.profileData)
+  Future<UserResponse> getProfileData(@Header('token') String token);
 
 
 
