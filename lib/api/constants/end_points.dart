@@ -7,5 +7,6 @@ class EndPoints {
   static const String resetPassword = "api/v1/auth/resetPassword";
   static const String getAllExamsBySubject = "api/v1/exams";
   static const String profileData= "api/v1/auth/profileData";
+  static const String updateProfileData= "api/v1/auth/editProfile";
 
 }

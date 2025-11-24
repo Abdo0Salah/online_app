@@ -90,4 +90,11 @@ class AppStyles {
       fontWeight: FontWeight.w400,
     );
   }
+  static TextStyle font12BlackW600() {
+    return TextStyle(
+      fontSize: 12,
+      color: ColorsManager.myBlue,
+      fontWeight: FontWeight.w600,
+    );
+  }
 }

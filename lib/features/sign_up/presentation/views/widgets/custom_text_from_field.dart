@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/theme/app_styles.dart';
 
 class CustomTextFromField extends StatelessWidget {
   final String hintText;
@@ -12,7 +12,9 @@ class CustomTextFromField extends StatelessWidget {
   final bool? isObscureText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-
+  final bool? enabled;
+  final String? suffixTest;
+  final VoidCallback? onTap;
   const CustomTextFromField({
     super.key,
     required this.hintText,
@@ -25,61 +27,68 @@ class CustomTextFromField extends StatelessWidget {
     required this.label,
     this.controller,
     this.validator,
+    this.enabled,
+    this.suffixTest,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: enabled ?? false,
       controller: controller,
       validator: validator,
       decoration: InputDecoration(
+        suffix: InkWell(
+          onTap: onTap,
+          child: Text(suffixTest ?? '', style: AppStyles.font12BlackW600()),
+        ),
         isDense: true,
         contentPadding: const EdgeInsets.all(16),
         hintText: hintText,
-        hintStyle: hintStyle ?? TextStyle(
-            fontSize: 14,
-            color: Color(0xFF535353),
-            fontWeight: FontWeight.w400
-        ),
+        hintStyle:
+            hintStyle ??
+            TextStyle(
+              fontSize: 14,
+              color: Color(0xFF535353),
+              fontWeight: FontWeight.w400,
+            ),
         labelText: label,
         labelStyle: TextStyle(
-            fontSize: 14,
-            color: Color(0xFF535353),
-            fontWeight: FontWeight.w400
+          fontSize: 14,
+          color: Color(0xFF535353),
+          fontWeight: FontWeight.w400,
         ),
         enabledBorder:
-        outlineInputBorder ??
+            outlineInputBorder ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 4),
               borderSide:
-              borderSide ??
-                  BorderSide(color: Color(0xFF535353), width: 1),
+                  borderSide ?? BorderSide(color: Color(0xFF535353), width: 1),
             ),
         focusedBorder:
-        outlineInputBorder ??
+            outlineInputBorder ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 4),
               borderSide:
-              borderSide ??
-                  BorderSide(color: Color(0xFF535353), width: 1),
+                  borderSide ?? BorderSide(color: Color(0xFF535353), width: 1),
             ),
         disabledBorder:
-        outlineInputBorder ??
+            outlineInputBorder ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 4),
               borderSide:
-              borderSide ??
-                  BorderSide(color: Color(0xFF535353), width: 1),
+                  borderSide ?? BorderSide(color: Color(0xFF535353), width: 1),
             ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? 4),
           borderSide:
-          borderSide ?? BorderSide(color: Color(0xFFCC1010), width: 1),
+              borderSide ?? BorderSide(color: Color(0xFFCC1010), width: 1),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? 4),
           borderSide:
-          borderSide ?? BorderSide(color: Color(0xFFCC1010), width: 1),
+              borderSide ?? BorderSide(color: Color(0xFFCC1010), width: 1),
         ),
 
         suffixIcon: suffixIcon,
@@ -87,9 +96,9 @@ class CustomTextFromField extends StatelessWidget {
       obscureText: isObscureText ?? false,
       cursorColor: Color(0xFF535353),
       style: TextStyle(
-          fontSize: 14,
-          color: Color(0xFF535353),
-          fontWeight: FontWeight.w400
+        fontSize: 14,
+        color: Color(0xFF535353),
+        fontWeight: FontWeight.w400,
       ),
     );
   }

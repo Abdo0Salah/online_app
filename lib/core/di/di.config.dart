@@ -62,20 +62,34 @@ import '../../features/hom_screen/presentation/exams/view_model/exams_viewmodel.
     as _i892;
 import '../../features/hom_screen/presentation/subject/view_model/subject_viewmodel.dart'
     as _i641;
+import '../../features/profile/data/datasources/local/get_profile_data_local_data_source_contract.dart'
+    as _i20;
 import '../../features/profile/data/datasources/local/get_profile_data_local_data_source_impl.dart'
     as _i160;
-import '../../features/profile/data/datasources/local/get_profile_data_locale_data_source_contract.dart'
-    as _i99;
+import '../../features/profile/data/datasources/local/update_profile_data_local_data_source_contract.dart'
+    as _i590;
+import '../../features/profile/data/datasources/local/update_profile_data_local_data_source_impl.dart'
+    as _i591;
 import '../../features/profile/data/datasources/remote/get_profile_data_remote_data_source_contract.dart'
     as _i409;
 import '../../features/profile/data/datasources/remote/get_profile_data_remote_data_source_impl.dart'
     as _i194;
+import '../../features/profile/data/datasources/remote/update_profile_data_remote_data_source_contract.dart'
+    as _i184;
+import '../../features/profile/data/datasources/remote/update_profile_data_remote_data_source_impl.dart'
+    as _i220;
 import '../../features/profile/data/repo/get_profile_data_repo_impl.dart'
     as _i512;
+import '../../features/profile/data/repo/update_profile_data_repo_impl.dart'
+    as _i705;
 import '../../features/profile/domain/repo/get_profile_data_repo_contract.dart'
     as _i127;
+import '../../features/profile/domain/repo/update_profile_data_repo_contract.dart'
+    as _i739;
 import '../../features/profile/domain/usecases/get_user_data_usecase.dart'
     as _i437;
+import '../../features/profile/domain/usecases/update_user_data_usecase.dart'
+    as _i500;
 import '../../features/profile/presentation/view_model/profile_viewmodel.dart'
     as _i987;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_contract.dart'
@@ -104,8 +118,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i693.GetAllSubjectsLocalDsContract>(
       () => _i318.GetAllSubjectsLocalDsImpl(),
     );
+    gh.factory<_i590.UpdateProfileDataLocalDataSourceContract>(
+      () => _i591.UpdateProfileDataLocalDataSourceImpl(),
+    );
     gh.lazySingleton<_i644.SignUpLocalDataSourceContract>(
       () => _i345.SignUpLocalDataSourceImpl(),
+    );
+    gh.factory<_i20.GetProfileDataLocalDataSourceContract>(
+      () => _i160.GetProfileDataLocalDataSourceImpl(),
     );
     gh.lazySingleton<_i502.ApiClient>(
       () => _i502.ApiClient.new(gh<_i361.Dio>()),
@@ -116,14 +136,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i353.AuthDataSourceRemoteContract>(
       () => _i195.AuthDataSourceRemoteImpl(gh<_i502.ApiClient>()),
     );
-    gh.factory<_i99.GetProfileDataLocalDataSourceContract>(
-      () => _i160.GetProfileDataLocalDataSourceImpl(),
-    );
     gh.factory<_i132.GetExamByIdRemoteDsContract>(
       () => _i161.GetExamByIdRemoteDsImpl(gh<_i502.ApiClient>()),
     );
     gh.factory<_i138.SignUpRemoteDataSourceContract>(
       () => _i287.SignupRemoteDatasourceImpl(gh<_i502.ApiClient>()),
+    );
+    gh.factory<_i184.UpdateProfileDataRemoteDataSourceContract>(
+      () => _i220.UpdateProfileDataRemoteDataSourceImpl(gh<_i502.ApiClient>()),
     );
     gh.factory<_i339.SignUpRepoContract>(
       () => _i821.SignUpRepoImpl(
@@ -146,6 +166,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i811.GetAllSubjectsUseCases>(
       () => _i811.GetAllSubjectsUseCases(gh<_i51.GetAllSubjectsRepoContract>()),
     );
+    gh.factory<_i127.GetProfileDataRepoContract>(
+      () => _i512.GetProfileDataRepoImpl(
+        gh<_i409.GetProfileDataRemoteDataSourceContract>(),
+        gh<_i20.GetProfileDataLocalDataSourceContract>(),
+      ),
+    );
     gh.factory<_i560.GetExamByIdRepoContract>(
       () => _i776.GetExamByIdRepoImpl(
         gh<_i132.GetExamByIdRemoteDsContract>(),
@@ -155,14 +181,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i990.AuthRepoContract>(
       () => _i984.AuthRepoImpl(gh<_i353.AuthDataSourceRemoteContract>()),
     );
-    gh.factory<_i127.GetProfileDataRepoContract>(
-      () => _i512.GetProfileDataRepoImpl(
-        gh<_i409.GetProfileDataRemoteDataSourceContract>(),
-        gh<_i99.GetProfileDataLocalDataSourceContract>(),
-      ),
-    );
     gh.factory<_i5.SignUpUseCase>(
       () => _i5.SignUpUseCase(gh<_i339.SignUpRepoContract>()),
+    );
+    gh.factory<_i739.UpdateProfileDataRepoContract>(
+      () => _i705.UpdateProfileDataRepoImpl(
+        gh<_i184.UpdateProfileDataRemoteDataSourceContract>(),
+        gh<_i590.UpdateProfileDataLocalDataSourceContract>(),
+      ),
     );
     gh.factory<_i483.ForgetPasswordUseCase>(
       () => _i483.ForgetPasswordUseCase(gh<_i990.AuthRepoContract>()),
@@ -188,11 +214,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i437.GetUserDataUseCase>(
       () => _i437.GetUserDataUseCase(gh<_i127.GetProfileDataRepoContract>()),
     );
-    gh.factory<_i987.ProfileViewmodel>(
-      () => _i987.ProfileViewmodel(gh<_i437.GetUserDataUseCase>()),
+    gh.factory<_i500.UpdateUserDataUseCase>(
+      () => _i500.UpdateUserDataUseCase(
+        gh<_i739.UpdateProfileDataRepoContract>(),
+      ),
     );
     gh.factory<_i892.ExamsViewModel>(
       () => _i892.ExamsViewModel(gh<_i548.GetExamByIdUseCase>()),
+    );
+    gh.factory<_i987.ProfileViewModel>(
+      () => _i987.ProfileViewModel(
+        gh<_i437.GetUserDataUseCase>(),
+        gh<_i500.UpdateUserDataUseCase>(),
+      ),
     );
     gh.factory<_i1025.AuthViewModel>(
       () => _i1025.AuthViewModel(
