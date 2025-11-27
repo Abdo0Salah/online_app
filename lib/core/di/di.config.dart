@@ -86,10 +86,10 @@ import '../../features/profile/domain/repo/get_profile_data_repo_contract.dart'
     as _i127;
 import '../../features/profile/domain/repo/update_profile_data_repo_contract.dart'
     as _i739;
-import '../../features/profile/domain/usecases/get_user_data_usecase.dart'
-    as _i437;
-import '../../features/profile/domain/usecases/update_user_data_usecase.dart'
-    as _i500;
+import '../../features/profile/domain/use_cases/get_user_data_use_case.dart'
+    as _i941;
+import '../../features/profile/domain/use_cases/update_user_data_use_case.dart'
+    as _i544;
 import '../../features/profile/presentation/view_model/profile_viewmodel.dart'
     as _i987;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_contract.dart'
@@ -211,11 +211,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i519.SignUpViewModel>(
       () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
-    gh.factory<_i437.GetUserDataUseCase>(
-      () => _i437.GetUserDataUseCase(gh<_i127.GetProfileDataRepoContract>()),
+    gh.factory<_i941.GetUserDataUseCase>(
+      () => _i941.GetUserDataUseCase(gh<_i127.GetProfileDataRepoContract>()),
     );
-    gh.factory<_i500.UpdateUserDataUseCase>(
-      () => _i500.UpdateUserDataUseCase(
+    gh.factory<_i544.UpdateUserDataUseCase>(
+      () => _i544.UpdateUserDataUseCase(
         gh<_i739.UpdateProfileDataRepoContract>(),
       ),
     );
@@ -224,8 +224,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i987.ProfileViewModel>(
       () => _i987.ProfileViewModel(
-        gh<_i437.GetUserDataUseCase>(),
-        gh<_i500.UpdateUserDataUseCase>(),
+        gh<_i941.GetUserDataUseCase>(),
+        gh<_i544.UpdateUserDataUseCase>(),
       ),
     );
     gh.factory<_i1025.AuthViewModel>(

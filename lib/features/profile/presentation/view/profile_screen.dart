@@ -7,6 +7,7 @@ import '../../../../core/di/di.dart';
 import '../../../../core/theme/app_styles.dart';
 import '../../../../core/utils/validators_utils.dart';
 import '../../../../core/values/app_strings.dart';
+import '../../../../core/values/routes_strings.dart';
 import '../../../sign_up/presentation/views/widgets/custom_button.dart';
 import '../../../sign_up/presentation/views/widgets/custom_text_from_field.dart';
 import '../../data/models/update-request.dart';
@@ -100,15 +101,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         const SizedBox(height: 18),
 
-                        CustomTextFromField(
-                          label: AppStrings.password,
-                          hintText: AppStrings.enterPassword,
-                          controller: profileViewModel.passwordController,
-                          enabled: true,
-                          suffixTest: AppStrings.change,
-                          onTap: () {
-                            profileViewModel.doIntent(
-                              OnClickChangePassword(context: context),
+                        BlocConsumer<ProfileViewModel, ProfileStates>(
+                          listener: (context, state) {
+                            var clickChangePasswordState =
+                                state.clickChangePasswordStates;
+
+                            if (clickChangePasswordState == null) {
+                              return;
+                            } else if (clickChangePasswordState.isLoading) {
+                              Navigator.pushNamed(
+                                context,
+                                RoutesStrings.forgetPasswordScreen,
+                              );
+                              clickChangePasswordState = null;
+                            }
+                          },
+                          builder: (context, state) {
+                            return CustomTextFromField(
+                              label: AppStrings.password,
+                              hintText: AppStrings.enterPassword,
+                              controller: profileViewModel.passwordController,
+                              enabled: true,
+                              suffixTest: AppStrings.change,
+                              onTap: () {
+                                profileViewModel.doIntent(
+                                  OnClickChangePassword(),
+                                );
+                              },
                             );
                           },
                         ),

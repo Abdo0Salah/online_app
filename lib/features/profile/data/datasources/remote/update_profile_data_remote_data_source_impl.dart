@@ -25,7 +25,9 @@ class UpdateProfileDataRemoteDataSourceImpl
           userResponse.updateUserDto ?? UpdateUserDto();
       return SuccessResponse<UpdateUserDto>(data: updateUserDto);
     } catch (e) {
-      return ErrorResponse(error: e is Exception ? e : Exception(e.toString()));
+      return ErrorResponse<UpdateUserDto>(
+        error: e is Exception ? e : Exception(e.toString()),
+      );
     }
   }
 }

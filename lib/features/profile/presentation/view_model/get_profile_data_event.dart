@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:online_exam_app/features/profile/data/models/update-request.dart';
 
 sealed class ProfileEvent {}
@@ -17,7 +16,4 @@ class UpdateProfileDataEventEvent extends ProfileEvent {
   });
 }
 
-class OnClickChangePassword extends ProfileEvent {
-  BuildContext context;
-  OnClickChangePassword({required this.context});
-}
+class OnClickChangePassword extends ProfileEvent {}

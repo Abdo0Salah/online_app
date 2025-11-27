@@ -2,21 +2,21 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/profile/domain/usecases/update_user_data_usecase.dart';
+import 'package:online_exam_app/features/profile/domain/use_cases/update_user_data_use_case.dart';
 import 'package:online_exam_app/features/profile/presentation/view_model/get_profile_data_states.dart';
 import 'package:online_exam_app/features/profile/domain/models/user_model.dart';
 import '../../../../config/base_response/base_response.dart';
 import '../../../../config/base_state/base_state.dart';
-import '../../../../core/values/routes_strings.dart';
 import '../../data/models/update-request.dart';
 import '../../domain/models/update_user_model.dart';
-import '../../domain/usecases/get_user_data_usecase.dart';
+import '../../domain/use_cases/get_user_data_use_case.dart';
 import 'get_profile_data_event.dart';
 
 @injectable
 class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
   final GetUserDataUseCase _getUserDataUseCase;
   final UpdateUserDataUseCase _updateUserDataUseCase;
+
   ProfileViewModel(this._getUserDataUseCase, this._updateUserDataUseCase)
     : super(ProfileStates());
   final String token =
@@ -32,19 +32,20 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  bool flag = false;
   void doIntent(ProfileEvent event) {
     switch (event) {
       case GetProfileDataEventEvent():
-        _getUserData();
+        _getUserData(event.token);
       case UpdateProfileDataEventEvent():
         _updateUserData(event.token, event.updateRequest);
-        _getUserData();
+        _getUserData(event.token);
       case OnClickChangePassword():
-        _changePasswordClicked(event.context);
+        _changePasswordClicked();
     }
   }
 
-  Future<void> _getUserData() async {
+  Future<void> _getUserData(String token) async {
     emit(
       state.copyWith(
         getProfileDataStates: BaseState<UserModel>(
@@ -124,7 +125,13 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
     }
   }
 
-  void _changePasswordClicked(context) async {
-    Navigator.pushNamed(context, RoutesStrings.forgetPasswordScreen);
+  void _changePasswordClicked() async {
+    emit(
+      state.copyWith(
+        clickChangePasswordStates: BaseState<UpdateUserModel>(
+          requestState: RequestState.loading,
+        ),
+      ),
+    );
   }
 }

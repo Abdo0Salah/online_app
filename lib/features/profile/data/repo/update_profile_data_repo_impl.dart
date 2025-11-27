@@ -10,10 +10,13 @@ import '../models/update-request.dart';
 @Injectable(as: UpdateProfileDataRepoContract)
 class UpdateProfileDataRepoImpl implements UpdateProfileDataRepoContract {
   UpdateProfileDataRemoteDataSourceContract remoteDataSource;
-UpdateProfileDataLocalDataSourceContract localDataSource;
+  UpdateProfileDataLocalDataSourceContract localDataSource;
   UpdateProfileDataRepoImpl(this.remoteDataSource, this.localDataSource);
   @override
-  Future<BaseResponse<UpdateUserModel>> updateProfileData(String token, UpdateRequest updateRequest) async {
+  Future<BaseResponse<UpdateUserModel>> updateProfileData(
+    String token,
+    UpdateRequest updateRequest,
+  ) async {
     BaseResponse<UpdateUserDto> userDtoResponse = await remoteDataSource
         .updateProfileData(token, updateRequest);
     switch (userDtoResponse) {
