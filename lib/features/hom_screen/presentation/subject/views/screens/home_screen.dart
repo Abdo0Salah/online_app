@@ -4,6 +4,7 @@ import 'package:online_exam_app/core/values/assets_strings.dart';
 import 'package:online_exam_app/features/hom_screen/presentation/subject/views/screens/tabs/profile_tab.dart';
 import 'package:online_exam_app/features/hom_screen/presentation/subject/views/screens/tabs/result_tab.dart';
 import 'package:online_exam_app/features/hom_screen/presentation/subject/views/screens/tabs/subject_tab.dart';
+import 'package:online_exam_app/features/profile/presentation/view/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
    HomeScreen({super.key});
@@ -48,5 +49,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<Widget> tabs = [SubjectTab(), ResultTab(), ProfileTab()];
+  List<Widget> tabs = [SubjectTab(), ResultTab(), ProfileScreen()];
 }

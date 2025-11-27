@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart' show EquatableMixin;
 
 enum RequestState { init, loading, loaded, error }
@@ -19,7 +18,7 @@ class BaseState<T>with EquatableMixin {
   // Factory constructors – one line each
   // ════════════════════════════════════════════
   factory BaseState.init()     => const BaseState(requestState: RequestState.init);     // Initial state (nothing happened yet)
-  factory BaseState.loading()  => const BaseState(requestState: RequestState.loading);  // Operation in progress
+  factory BaseState.loading()  =>  BaseState<T>(requestState: RequestState.loading);  // Operation in progress
   factory BaseState.loaded(T data) => BaseState(requestState: RequestState.loaded, data: data); // Success + data
   factory BaseState.error(String message) => BaseState(requestState: RequestState.error, errorMessage: message); // Failed
 
@@ -42,10 +41,7 @@ class BaseState<T>with EquatableMixin {
 // ════════════════════════════════════════════
 extension BaseStateExtension<T> on BaseState<T> {
   BaseState<T> get init => BaseState.init(); // Reset to Initial
-  BaseState<T> get loading => BaseState.loading(); // Set Loading
+  BaseState<T> get loading => BaseState<T>.loading(); // Set Loading
   BaseState<T> loaded(T data) => BaseState.loaded(data); // Set Success
   BaseState<T> error(String message) => BaseState.error(message); // Set Error
 }
-
-
-
