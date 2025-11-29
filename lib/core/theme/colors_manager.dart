@@ -9,4 +9,6 @@ class ColorsManager {
   static const  Color lightBlue = Color(0xFFEDEFF3);
   static const  Color error = Color(0xFFCC1010);
   static const  Color black30 = Color(0xFF878787);
+
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/routing/routes_generator.dart';
+import 'package:online_exam_app/features/exame_score/presentation/view/exame_score_screen.dart';
 
 import 'core/di/di.dart';
 import 'core/values/routes_strings.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: RoutesStrings.homeScreen,
+     // initialRoute: RoutesStrings.homeScreen,
+      home: ScoreWidget(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
