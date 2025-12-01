@@ -28,10 +28,10 @@ void main() {
       SuccessResponse<UserModel>(data: userModel),
     );
     when(
-      mockRepo.getProfileData("token"),
+      mockRepo.getProfileData(),
     ).thenAnswer((_) async => SuccessResponse<UserModel>(data: userModel));
-    await useCase.call("token");
-    mockRepo.getProfileData("token");
-    verify(mockRepo.getProfileData("token"));
+    await useCase.call();
+    mockRepo.getProfileData();
+    verify(mockRepo.getProfileData());
   });
 }

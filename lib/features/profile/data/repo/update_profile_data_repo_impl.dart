@@ -14,11 +14,10 @@ class UpdateProfileDataRepoImpl implements UpdateProfileDataRepoContract {
   UpdateProfileDataRepoImpl(this.remoteDataSource, this.localDataSource);
   @override
   Future<BaseResponse<UpdateUserModel>> updateProfileData(
-    String token,
     UpdateRequest updateRequest,
   ) async {
     BaseResponse<UpdateUserDto> userDtoResponse = await remoteDataSource
-        .updateProfileData(token, updateRequest);
+        .updateProfileData(updateRequest);
     switch (userDtoResponse) {
       case SuccessResponse<UpdateUserDto>():
         UpdateUserDto updateUserDto = userDtoResponse.data;

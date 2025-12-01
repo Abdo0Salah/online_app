@@ -61,10 +61,10 @@ void main() {
     'test cases for update user data with nun empty data  it will return success ',
     () async {
       when(
-        remoteDS.updateProfileData("token", updateRequest),
+        remoteDS.updateProfileData( updateRequest),
       ).thenAnswer((_) async => SuccessResponse(data: userDto));
       final result =
-          await repo.updateProfileData("token", updateRequest)
+          await repo.updateProfileData( updateRequest)
               as SuccessResponse<UpdateUserModel>;
       expect(result, isA<SuccessResponse<UpdateUserModel>>());
       expect(result.data.username, equals(userDto.username));
@@ -76,7 +76,7 @@ void main() {
       expect(result.data.createdAt, equals(userDto.createdAt));
       expect(result.data.isVerified, equals(userDto.isVerified));
       expect(result.data.id, equals(userDto.id));
-      verify(repo.updateProfileData("token", updateRequest)).called(1);
+      verify(repo.updateProfileData( updateRequest)).called(1);
     },
   );
   test(
@@ -84,14 +84,14 @@ void main() {
     () async {
       Exception e = Exception("error");
       when(
-        remoteDS.updateProfileData("token", updateRequest),
+        remoteDS.updateProfileData( updateRequest),
       ).thenAnswer((_) async => ErrorResponse<UpdateUserDto>(error: e));
       final result =
-          await repo.updateProfileData("token", updateRequest)
+          await repo.updateProfileData( updateRequest)
               as ErrorResponse<UpdateUserModel>;
       expect(result, isA<ErrorResponse<UpdateUserModel>>());
 
-      verify(repo.updateProfileData("token", updateRequest)).called(1);
+      verify(repo.updateProfileData( updateRequest)).called(1);
     },
   );
 }

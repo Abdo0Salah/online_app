@@ -62,18 +62,6 @@ import '../../features/hom_screen/presentation/exams/view_model/exams_viewmodel.
     as _i892;
 import '../../features/hom_screen/presentation/subject/view_model/subject_viewmodel.dart'
     as _i641;
-import '../../features/questions/data/data_source/remote/questions_data_source_remote.dart'
-    as _i750;
-import '../../features/questions/data/data_source/remote/questions_data_source_remote_impl.dart'
-    as _i706;
-import '../../features/questions/data/repository/questions_repository_impl.dart'
-    as _i584;
-import '../../features/questions/domain/repository/questions_repository.dart'
-    as _i849;
-import '../../features/questions/domain/usecases/all_questions_use_case.dart'
-    as _i967;
-import '../../features/questions/presentation/view_model/all_questions_view_model.dart'
-    as _i302;
 import '../../features/profile/data/datasources/local/get_profile_data_local_data_source_contract.dart'
     as _i20;
 import '../../features/profile/data/datasources/local/get_profile_data_local_data_source_impl.dart'
@@ -104,6 +92,18 @@ import '../../features/profile/domain/use_cases/update_user_data_use_case.dart'
     as _i544;
 import '../../features/profile/presentation/view_model/profile_viewmodel.dart'
     as _i987;
+import '../../features/questions/data/data_source/remote/questions_data_source_remote.dart'
+    as _i750;
+import '../../features/questions/data/data_source/remote/questions_data_source_remote_impl.dart'
+    as _i706;
+import '../../features/questions/data/repository/questions_repository_impl.dart'
+    as _i584;
+import '../../features/questions/domain/repository/questions_repository.dart'
+    as _i849;
+import '../../features/questions/domain/usecases/all_questions_use_case.dart'
+    as _i967;
+import '../../features/questions/presentation/view_model/all_questions_view_model.dart'
+    as _i302;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_contract.dart'
     as _i644;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_impl.dart'
@@ -226,10 +226,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i519.SignUpViewModel>(
       () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
-    gh.factory<_i849.QuestionsRepository>(
-      () =>
-          _i584.QuestionsRepositoryImpl(gh<_i750.QuestionsDataSourceRemote>()),
-    );
     gh.factory<_i941.GetUserDataUseCase>(
       () => _i941.GetUserDataUseCase(gh<_i127.GetProfileDataRepoContract>()),
     );
@@ -237,6 +233,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i544.UpdateUserDataUseCase(
         gh<_i739.UpdateProfileDataRepoContract>(),
       ),
+    );
+    gh.factory<_i849.QuestionsRepository>(
+      () =>
+          _i584.QuestionsRepositoryImpl(gh<_i750.QuestionsDataSourceRemote>()),
     );
     gh.factory<_i892.ExamsViewModel>(
       () => _i892.ExamsViewModel(gh<_i548.GetExamByIdUseCase>()),

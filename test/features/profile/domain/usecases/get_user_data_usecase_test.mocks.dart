@@ -37,13 +37,13 @@ class MockGetProfileDataRepoContract extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.BaseResponse<_i5.UserModel>> getProfileData(String? token) =>
+  _i3.Future<_i4.BaseResponse<_i5.UserModel>> getProfileData() =>
       (super.noSuchMethod(
-            Invocation.method(#getProfileData, [token]),
+            Invocation.method(#getProfileData, []),
             returnValue: _i3.Future<_i4.BaseResponse<_i5.UserModel>>.value(
               _i6.dummyValue<_i4.BaseResponse<_i5.UserModel>>(
                 this,
-                Invocation.method(#getProfileData, [token]),
+                Invocation.method(#getProfileData, []),
               ),
             ),
           )

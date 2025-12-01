@@ -34,11 +34,11 @@ void main() {
       lastName: "mohamed",
     );
 
-    when(mockRepo.updateProfileData("token", updateRequest)).thenAnswer(
+    when(mockRepo.updateProfileData( updateRequest)).thenAnswer(
       (_) async => SuccessResponse<UpdateUserModel>(data: userModel),
     );
-    await useCase.call("token", updateRequest);
-    mockRepo.updateProfileData("token", updateRequest);
-    verify(mockRepo.updateProfileData("token", updateRequest));
+    await useCase.call( updateRequest);
+    mockRepo.updateProfileData( updateRequest);
+    verify(mockRepo.updateProfileData( updateRequest));
   });
 }

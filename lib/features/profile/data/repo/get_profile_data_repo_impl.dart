@@ -13,9 +13,9 @@ class GetProfileDataRepoImpl implements GetProfileDataRepoContract {
   GetProfileDataLocalDataSourceContract localDataSource;
   GetProfileDataRepoImpl(this.remoteDataSource, this.localDataSource);
   @override
-  Future<BaseResponse<UserModel>> getProfileData(String token) async {
+  Future<BaseResponse<UserModel>> getProfileData() async {
     BaseResponse<UserDto> userDtoResponse = await remoteDataSource
-        .getProfileData(token);
+        .getProfileData();
     switch (userDtoResponse) {
       case SuccessResponse<UserDto>():
         UserDto userDto = userDtoResponse.data;

@@ -7,6 +7,6 @@ import '../repo/get_profile_data_repo_contract.dart';
 class GetUserDataUseCase {
   GetProfileDataRepoContract repo;
   GetUserDataUseCase(this.repo);
-  Future<BaseResponse<UserModel>> call(String token) =>
-      repo.getProfileData(token);
+  Future<BaseResponse<UserModel>> call() =>
+      repo.getProfileData();
 }

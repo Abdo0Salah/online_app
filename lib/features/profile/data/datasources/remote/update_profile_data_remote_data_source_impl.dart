@@ -13,12 +13,10 @@ class UpdateProfileDataRemoteDataSourceImpl
   UpdateProfileDataRemoteDataSourceImpl(this.api);
   @override
   Future<BaseResponse<UpdateUserDto>> updateProfileData(
-    String token,
     UpdateRequest updateRequest,
   ) async {
     try {
       UpdateUserResponse userResponse = await api.updateProfileData(
-        token,
         updateRequest,
       );
       UpdateUserDto updateUserDto =

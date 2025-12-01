@@ -9,7 +9,6 @@ class UpdateUserDataUseCase {
   UpdateProfileDataRepoContract repo;
   UpdateUserDataUseCase(this.repo);
   Future<BaseResponse<UpdateUserModel>> call(
-    String token,
     UpdateRequest updateRequest,
-  ) => repo.updateProfileData(token, updateRequest);
+  ) => repo.updateProfileData(updateRequest);
 }

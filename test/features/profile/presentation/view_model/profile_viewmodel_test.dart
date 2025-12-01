@@ -24,7 +24,6 @@ void main() {
   late MockGetUserDataUseCase mockUseCase1;
   late MockUpdateUserDataUseCase mockUseCase2;
   late UserModel userModel;
-  late String token;
   late Exception exception;
   late UpdateRequest updateRequest;
   late UpdateUserModel updateUserModel;
@@ -61,7 +60,6 @@ void main() {
       email: "sds",
     );
     exception = Exception("Failed to fetch data");
-    token = "token";
     provideDummy<BaseResponse<UserModel>>(
       SuccessResponse<UserModel>(data: userModel),
     );
@@ -88,11 +86,11 @@ void main() {
       'emits [loading, success] when GetUserDataUseCase returns SuccessResponse',
       setUp: () {
         when(
-          mockUseCase1.call(token),
+          mockUseCase1.call(),
         ).thenAnswer((_) async => SuccessResponse<UserModel>(data: userModel));
       },
       build: () => viewModel,
-      act: (bloc) => bloc.doIntent(GetProfileDataEventEvent(token: token)),
+      act: (bloc) => bloc.doIntent(GetProfileDataEventEvent()),
       expect: () {
         return [
           ProfileStates(getProfileDataStates: BaseState<UserModel>.loading()),
@@ -102,18 +100,18 @@ void main() {
         ];
       },
       verify: (_) {
-        verify(mockUseCase1(token)).called(1);
+        verify(mockUseCase1()).called(1);
       },
     );
     blocTest<ProfileViewModel, ProfileStates>(
       'emits [loading, error] when GetUserDataUseCase returns ErrorResponse',
       setUp: () {
         when(
-          mockUseCase1.call(token),
+          mockUseCase1.call(),
         ).thenAnswer((_) async => ErrorResponse<UserModel>(error: exception));
       },
       build: () => viewModel,
-      act: (bloc) => bloc.doIntent(GetProfileDataEventEvent(token: token)),
+      act: (bloc) => bloc.doIntent(GetProfileDataEventEvent()),
       expect: () {
         return [
           ProfileStates(getProfileDataStates: BaseState<UserModel>.loading()),
@@ -125,7 +123,7 @@ void main() {
         ];
       },
       verify: (_) {
-        verify(mockUseCase1(token)).called(1);
+        verify(mockUseCase1()).called(1);
       },
     );
   });
@@ -133,16 +131,16 @@ void main() {
     blocTest<ProfileViewModel, ProfileStates>(
       'emits [loading, success] when UpdateUserDataUseCase returns SuccessResponse',
       setUp: () {
-        when(mockUseCase2.call(token, updateRequest)).thenAnswer(
+        when(mockUseCase2.call(updateRequest)).thenAnswer(
           (_) async => SuccessResponse<UpdateUserModel>(data: updateUserModel),
         );
         when(
-          mockUseCase1.call(token),
+          mockUseCase1.call(),
         ).thenAnswer((_) async => SuccessResponse<UserModel>(data: userModel));
       },
       build: () => viewModel,
       act: (bloc) => bloc.doIntent(
-        UpdateProfileDataEventEvent(token: token, updateRequest: updateRequest),
+        UpdateProfileDataEventEvent(updateRequest: updateRequest),
       ),
 
       expect: () {
@@ -174,23 +172,23 @@ void main() {
         ];
       },
       verify: (_) {
-        verify(mockUseCase2(token, updateRequest)).called(1);
+        verify(mockUseCase2(updateRequest)).called(1);
       },
     );
     blocTest<ProfileViewModel, ProfileStates>(
       'emits [loading, error] when UpdateUserDataUseCase returns ErrorResponse',
       setUp: () {
-        when(mockUseCase2.call(token, updateRequest)).thenAnswer(
+        when(mockUseCase2.call(updateRequest)).thenAnswer(
           (_) async => ErrorResponse<UpdateUserModel>(error: exception),
         );
         when(
-          mockUseCase1.call(token),
+          mockUseCase1.call(),
         ).thenAnswer((_) async => ErrorResponse<UserModel>(error: exception));
       },
       build: () => viewModel,
 
       act: (bloc) => bloc.doIntent(
-        UpdateProfileDataEventEvent(token: token, updateRequest: updateRequest),
+        UpdateProfileDataEventEvent(updateRequest: updateRequest),
       ),
       expect: () {
         return [
@@ -223,7 +221,7 @@ void main() {
         ];
       },
       verify: (_) {
-        verify(mockUseCase2(token, updateRequest)).called(1);
+        verify(mockUseCase2(updateRequest)).called(1);
       },
     );
   });

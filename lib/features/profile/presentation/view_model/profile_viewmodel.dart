@@ -19,8 +19,6 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
 
   ProfileViewModel(this._getUserDataUseCase, this._updateUserDataUseCase)
     : super(ProfileStates());
-  final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmEyYWM2OGZiMTlhZDk1NWIyMzZiZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxMjkwOTY0fQ.AL_txQPhDuA_6Q7Q5hEm-7YnyrniDT2iyQ4Tu76Qdz0";
   @override
   List<Object> get props {
     return [state];
@@ -36,26 +34,23 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
   void doIntent(ProfileEvent event) {
     switch (event) {
       case GetProfileDataEventEvent():
-        _getUserData(event.token);
+        _getUserData();
       case UpdateProfileDataEventEvent():
-        _updateUserData(event.token, event.updateRequest);
-        _getUserData(event.token);
+        _updateUserData(event.updateRequest);
+        _getUserData();
       case ClickedButton():
         _clickedButton(event.click);
     }
   }
 
-  Future<void> _getUserData(String token) async {
+  Future<void> _getUserData( ) async {
     emit(state.copyWith(getProfileDataStates: BaseState<UserModel>.loading()));
 
-    BaseResponse<UserModel> response = await _getUserDataUseCase(token);
+    BaseResponse<UserModel> response = await _getUserDataUseCase();
     switch (response) {
       case SuccessResponse<UserModel>():
         {
-          emit(
-            state.copyWith(
-              getProfileDataStates: BaseState<UserModel>.loaded(response.data),
-            ),
+          emit(state.copyWith(getProfileDataStates: BaseState<UserModel>.loaded(response.data)),
           );
         }
 
@@ -72,20 +67,10 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
     }
   }
 
-  Future<void> _updateUserData(
-    String token,
-    UpdateRequest updateRequest,
-  ) async {
-    emit(
-      state.copyWith(
-        updateProfileDataStates: BaseState<UpdateUserModel>.loading(),
-      ),
-    );
+  Future<void> _updateUserData(UpdateRequest updateRequest) async {
+    emit(state.copyWith(updateProfileDataStates: state.updateProfileDataStates?.loading));
 
-    BaseResponse<UpdateUserModel> response = (await _updateUserDataUseCase(
-      token,
-      updateRequest,
-    ));
+    BaseResponse<UpdateUserModel> response = (await _updateUserDataUseCase(updateRequest));
     switch (response) {
       case SuccessResponse<UpdateUserModel>():
         {
