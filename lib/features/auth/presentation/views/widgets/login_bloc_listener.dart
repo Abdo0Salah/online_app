@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
+import 'package:online_exam_app/core/values/routes_strings.dart';
 import 'package:online_exam_app/features/auth/presentation/view_model/auth_view_model.dart';
 
 class LoginBlocListener extends StatelessWidget {
@@ -12,6 +13,7 @@ class LoginBlocListener extends StatelessWidget {
       listener: (context, state) {
       if (state.login.isLoaded) {
           _showSuccess(context);
+          Navigator.pushNamedAndRemoveUntil(context, RoutesStrings.homeScreen, (route) => false);
         } else if (state.login.isError) {
           _showError(context, state.login.errorMessage ?? "Something went wrong");
         }

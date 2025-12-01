@@ -11,6 +11,7 @@ import 'package:online_exam_app/features/auth/data/models_dto/verify_reset_code/
 import 'package:online_exam_app/features/auth/data/models_dto/verify_reset_code/verify_reset_code_response.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/exams_on_subject_response.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/subject_response.dart';
+import 'package:online_exam_app/features/questions/data/models_dto/questions/all_questions_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/signup_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
 import 'package:retrofit/retrofit.dart';
@@ -40,12 +41,12 @@ abstract class ApiClient {
   Future<ResetPasswordResponse> resetPassword(@Body() ResetPasswordRequest resetPasswordRequest);
 
   @GET(EndPoints.getAllSubjectsEndpoint)
-  Future<SubjectResponse> getAllSubjects(@Header('token') String token);
+  Future<SubjectResponse> getAllSubjects();
 
   @GET(EndPoints.getAllExamsBySubject)
-  Future<ExamsOnSubjectResponse> getAllExamsBySubject(@Header('token') String token,@Header('subject') String subjectId);
+  Future<ExamsOnSubjectResponse> getAllExamsBySubject(@Header('subject') String subjectId);
 
-
-
+  @GET(EndPoints.getAllQuestionsOnExam)
+  Future<AllQuestionsResponse> getAllQuestionsOnExam ({@Query("exam") required String examId});
 
 }

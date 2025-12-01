@@ -96,17 +96,14 @@ class MockGetExamByIdUseCase extends _i1.Mock
   );
 
   @override
-  _i5.Future<_i6.BaseResponse<List<_i7.ExamsModel>>> call(
-    String? token,
-    String? subjectId,
-  ) =>
+  _i5.Future<_i6.BaseResponse<List<_i7.ExamsModel>>> call(String? subjectId) =>
       (super.noSuchMethod(
-            Invocation.method(#call, [token, subjectId]),
+            Invocation.method(#call, [subjectId]),
             returnValue:
                 _i5.Future<_i6.BaseResponse<List<_i7.ExamsModel>>>.value(
                   _i8.dummyValue<_i6.BaseResponse<List<_i7.ExamsModel>>>(
                     this,
-                    Invocation.method(#call, [token, subjectId]),
+                    Invocation.method(#call, [subjectId]),
                   ),
                 ),
           )

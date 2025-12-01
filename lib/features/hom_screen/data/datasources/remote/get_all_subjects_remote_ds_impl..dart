@@ -11,9 +11,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
   ApiClient api;
   GetAllSubjectsRemoteDsImpl(this.api);
   @override
-  Future<BaseResponse<List <SubjectsDto>>> getAllSubjects(String token)async {
+  Future<BaseResponse<List <SubjectsDto>>> getAllSubjects()async {
     try {
-      SubjectResponse subjectResponse = await api.getAllSubjects(token);
+      SubjectResponse subjectResponse = await api.getAllSubjects();
       List<SubjectsDto> subject = subjectResponse.subjectsDto ?? [] ;
       return SuccessResponse<List<SubjectsDto>>(data: subject );
 

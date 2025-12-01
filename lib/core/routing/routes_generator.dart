@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/values/routes_strings.dart';
+import 'package:online_exam_app/features/questions/presentation/view/screens/questions_screen.dart';
 import 'package:online_exam_app/features/sign_up/presentation/views/screens/signup_screen.dart';
 import 'package:online_exam_app/features/auth/presentation/views/screens/forget_password_screen.dart';
 import 'package:online_exam_app/features/auth/presentation/views/screens/otp_screen.dart';
@@ -26,6 +27,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) =>  HomeScreen());
       case RoutesStrings.examsScreen:
         return MaterialPageRoute(builder: (context) =>  ExamsScreen());
+      case RoutesStrings.allQuestionsOnExams:
+        return MaterialPageRoute(builder: (context) =>  QuestionsScreen());
 
       default:
         return null;

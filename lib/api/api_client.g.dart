@@ -168,11 +168,10 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<SubjectResponse> getAllSubjects(String token) async {
+  Future<SubjectResponse> getAllSubjects() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'token': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<SubjectResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
@@ -196,13 +195,10 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<ExamsOnSubjectResponse> getAllExamsBySubject(
-    String token,
-    String subjectId,
-  ) async {
+  Future<ExamsOnSubjectResponse> getAllExamsBySubject(String subjectId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'token': token, r'subject': subjectId};
+    final _headers = <String, dynamic>{r'subject': subjectId};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ExamsOnSubjectResponse>(
@@ -219,6 +215,35 @@ class _ApiClient implements ApiClient {
     late ExamsOnSubjectResponse _value;
     try {
       _value = ExamsOnSubjectResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<AllQuestionsResponse> getAllQuestionsOnExam({
+    required String examId,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'exam': examId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<AllQuestionsResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'https://exam.elevateegy.com/api/v1/questions',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AllQuestionsResponse _value;
+    try {
+      _value = AllQuestionsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

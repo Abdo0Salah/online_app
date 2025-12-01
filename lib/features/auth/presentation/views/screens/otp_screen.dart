@@ -4,6 +4,7 @@ import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/routes_strings.dart';
+import 'package:online_exam_app/features/auth/presentation/view_model/auth_events.dart';
 import 'package:online_exam_app/features/auth/presentation/view_model/auth_view_model.dart';
 import 'package:online_exam_app/features/auth/presentation/views/widgets/build_pin_code_text_field.dart';
 import 'package:online_exam_app/features/auth/presentation/views/widgets/custom_text_span_widget.dart';
@@ -40,7 +41,7 @@ class OtpScreen extends StatelessWidget {
                   const SizedBox(height: 32),
                   BuildPinCodeTextField(
                       onCompleted: (otpCode) {
-                        _viewModel.verifyPassword(otpCode);
+                        _viewModel.doIntent(VerifyPasswordEvent(otpCode));
                       }
                   ),
                   const SizedBox(height: 24),

@@ -37,16 +37,14 @@ class MockGetAllSubjectsRepoContract extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.BaseResponse<List<_i5.SubjectModel>>> getAllSubjects(
-    String? token,
-  ) =>
+  _i3.Future<_i4.BaseResponse<List<_i5.SubjectModel>>> getAllSubjects() =>
       (super.noSuchMethod(
-            Invocation.method(#getAllSubjects, [token]),
+            Invocation.method(#getAllSubjects, []),
             returnValue:
                 _i3.Future<_i4.BaseResponse<List<_i5.SubjectModel>>>.value(
                   _i6.dummyValue<_i4.BaseResponse<List<_i5.SubjectModel>>>(
                     this,
-                    Invocation.method(#getAllSubjects, [token]),
+                    Invocation.method(#getAllSubjects, []),
                   ),
                 ),
           )

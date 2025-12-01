@@ -5,6 +5,7 @@ import 'package:online_exam_app/core/theme/app_styles.dart';
 import 'package:online_exam_app/core/theme/colors_manager.dart';
 import 'package:online_exam_app/core/utils/validators_utils.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/features/auth/presentation/view_model/auth_events.dart';
 import 'package:online_exam_app/features/auth/presentation/view_model/auth_view_model.dart';
 import 'package:online_exam_app/features/auth/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:online_exam_app/features/auth/presentation/views/widgets/custom_text_from_field.dart';
@@ -106,10 +107,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     if (!_formKey.currentState!.validate()) {
       return;
     } else {
-      _viewModel.resetPassword(
-          email: emailController.text,
-          newPassword: newPasswordController.text
-      );
+      _viewModel.doIntent(ResetPasswordEvent(email: emailController.text, newPassword: newPasswordController.text));
     }
   }
 

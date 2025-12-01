@@ -10,9 +10,9 @@ class GetExamByIdRemoteDsImpl implements GetExamByIdRemoteDsContract {
   ApiClient api ;
   GetExamByIdRemoteDsImpl(this.api);
   @override
-  Future<BaseResponse<List<ExamsDto>>> getAllExamsBySubject(String token, String subjectId) async{
+  Future<BaseResponse<List<ExamsDto>>> getAllExamsBySubject(String subjectId) async{
     try{
-      ExamsOnSubjectResponse exams = await api.getAllExamsBySubject(token, subjectId);
+      ExamsOnSubjectResponse exams = await api.getAllExamsBySubject(subjectId);
     List<ExamsDto> examsDto =exams.examsDto ??[];
     return SuccessResponse<List<ExamsDto>>(data: examsDto);
 

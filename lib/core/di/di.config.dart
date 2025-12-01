@@ -62,6 +62,18 @@ import '../../features/hom_screen/presentation/exams/view_model/exams_viewmodel.
     as _i892;
 import '../../features/hom_screen/presentation/subject/view_model/subject_viewmodel.dart'
     as _i641;
+import '../../features/questions/data/data_source/remote/questions_data_source_remote.dart'
+    as _i750;
+import '../../features/questions/data/data_source/remote/questions_data_source_remote_impl.dart'
+    as _i706;
+import '../../features/questions/data/repository/questions_repository_impl.dart'
+    as _i584;
+import '../../features/questions/domain/repository/questions_repository.dart'
+    as _i849;
+import '../../features/questions/domain/usecases/all_questions_use_case.dart'
+    as _i967;
+import '../../features/questions/presentation/view_model/all_questions_view_model.dart'
+    as _i302;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_contract.dart'
     as _i644;
 import '../../features/sign_up/data/datasources/local/signup_local_datasource_impl.dart'
@@ -133,6 +145,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i990.AuthRepoContract>(
       () => _i984.AuthRepoImpl(gh<_i353.AuthDataSourceRemoteContract>()),
     );
+    gh.factory<_i750.QuestionsDataSourceRemote>(
+      () => _i706.QuestionsDataSourceRemoteImpl(gh<_i502.ApiClient>()),
+    );
     gh.factory<_i5.SignUpUseCase>(
       () => _i5.SignUpUseCase(gh<_i339.SignUpRepoContract>()),
     );
@@ -157,8 +172,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i519.SignUpViewModel>(
       () => _i519.SignUpViewModel(gh<_i5.SignUpUseCase>()),
     );
+    gh.factory<_i849.QuestionsRepository>(
+      () =>
+          _i584.QuestionsRepositoryImpl(gh<_i750.QuestionsDataSourceRemote>()),
+    );
     gh.factory<_i892.ExamsViewModel>(
       () => _i892.ExamsViewModel(gh<_i548.GetExamByIdUseCase>()),
+    );
+    gh.factory<_i967.AllQuestionsUseCase>(
+      () => _i967.AllQuestionsUseCase(gh<_i849.QuestionsRepository>()),
     );
     gh.factory<_i1025.AuthViewModel>(
       () => _i1025.AuthViewModel(
@@ -167,6 +189,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i449.VerifyResetCodeUseCase>(),
         gh<_i169.ResetPasswordUseCase>(),
       ),
+    );
+    gh.factory<_i302.AllQuestionsViewModel>(
+      () => _i302.AllQuestionsViewModel(gh<_i967.AllQuestionsUseCase>()),
     );
     return this;
   }

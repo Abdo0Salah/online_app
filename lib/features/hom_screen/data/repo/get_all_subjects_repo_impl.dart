@@ -11,11 +11,9 @@ class GetAllSubjectsRepoImpl implements GetAllSubjectsRepoContract{
   GetAllSubjectsRemoteDsContract getAllSubjectsRemoteDs;
   GetAllSubjectsRepoImpl(this.getAllSubjectsLocalDs,this.getAllSubjectsRemoteDs);
   @override
-  Future<BaseResponse<List <SubjectModel>>> getAllSubjects(String token) async {
+  Future<BaseResponse<List <SubjectModel>>> getAllSubjects() async {
     BaseResponse<List <SubjectsDto>> subjectDtoResponse =
-    await getAllSubjectsRemoteDs.getAllSubjects(
-      token,
-    );
+    await getAllSubjectsRemoteDs.getAllSubjects();
     switch (subjectDtoResponse) {
       case SuccessResponse<List <SubjectsDto>>():
         {

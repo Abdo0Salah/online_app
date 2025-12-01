@@ -49,6 +49,14 @@ class AppStyles {
     );
   }
 
+  static TextStyle font16BlueW500() {
+    return TextStyle(
+      fontSize: 16,
+      color: ColorsManager.myBlue,
+      fontWeight: FontWeight.w500,
+    );
+  }
+
 
   static TextStyle font16WhiteW500() {
     return TextStyle(

@@ -6,6 +6,7 @@ import 'package:online_exam_app/core/theme/colors_manager.dart';
 import 'package:online_exam_app/core/utils/validators_utils.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/auth/data/models_dto/forget_password/forget_password_request.dart';
+import 'package:online_exam_app/features/auth/presentation/view_model/auth_events.dart';
 import 'package:online_exam_app/features/auth/presentation/view_model/auth_view_model.dart';
 import 'package:online_exam_app/features/auth/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:online_exam_app/features/auth/presentation/views/widgets/custom_text_from_field.dart';
@@ -107,7 +108,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       ForgetPasswordRequest forgetPasswordRequest = ForgetPasswordRequest(
           email: emailController.text
       );
-      _viewModel.forgetPassword(forgetPasswordRequest);
+      _viewModel.doIntent(ForgetPasswordEvent(forgetPasswordRequest));
     } else {
       return;
     }

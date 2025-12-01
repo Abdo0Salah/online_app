@@ -87,16 +87,14 @@ class MockGetAllSubjectsRemoteDsImpl extends _i1.Mock
   );
 
   @override
-  _i4.Future<_i5.BaseResponse<List<_i9.SubjectsDto>>> getAllSubjects(
-    String? token,
-  ) =>
+  _i4.Future<_i5.BaseResponse<List<_i9.SubjectsDto>>> getAllSubjects() =>
       (super.noSuchMethod(
-            Invocation.method(#getAllSubjects, [token]),
+            Invocation.method(#getAllSubjects, []),
             returnValue:
                 _i4.Future<_i5.BaseResponse<List<_i9.SubjectsDto>>>.value(
                   _i7.dummyValue<_i5.BaseResponse<List<_i9.SubjectsDto>>>(
                     this,
-                    Invocation.method(#getAllSubjects, [token]),
+                    Invocation.method(#getAllSubjects, []),
                   ),
                 ),
           )

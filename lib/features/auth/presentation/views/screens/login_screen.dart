@@ -7,6 +7,7 @@ import 'package:online_exam_app/core/utils/validators_utils.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/routes_strings.dart';
 import 'package:online_exam_app/features/auth/data/models_dto/login/request_login.dart';
+import 'package:online_exam_app/features/auth/presentation/view_model/auth_events.dart';
 import 'package:online_exam_app/features/auth/presentation/view_model/auth_view_model.dart';
 import 'package:online_exam_app/features/auth/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:online_exam_app/features/auth/presentation/views/widgets/custom_text_from_field.dart';
@@ -123,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: emailController.text,
         password: passwordController.text,
       );
-      _viewModel.login(requestLogin);
+      _viewModel.doIntent(LoginEvent(requestLogin));
     }
   }
 

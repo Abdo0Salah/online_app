@@ -22,11 +22,11 @@ void main() {
     MockGetExamByIdRepoContract mockRepo = MockGetExamByIdRepoContract();
     GetExamByIdUseCase useCases = GetExamByIdUseCase(mockRepo);
 
-    when(mockRepo.getAllExamsBySubject("token", "id")).thenAnswer(
+    when(mockRepo.getAllExamsBySubject("id")).thenAnswer(
           (_) async => SuccessResponse<List<ExamsModel>>(data: examsList),
     );
-    await useCases.call("token", "id");
-    mockRepo.getAllExamsBySubject("token", "id");
-    verify(mockRepo.getAllExamsBySubject("token", "id"));
+    await useCases.call( "id");
+    mockRepo.getAllExamsBySubject( "id");
+    verify(mockRepo.getAllExamsBySubject( "id"));
   });
 }

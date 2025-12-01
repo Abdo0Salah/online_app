@@ -6,7 +6,7 @@ import 'package:online_exam_app/features/hom_screen/domain/repo/get_exam_by_id_r
 class GetExamByIdUseCase {
   GetExamByIdRepoContract repo;
   GetExamByIdUseCase( this.repo);
-  Future<BaseResponse<List<ExamsModel>>> call(String token, String subjectId) =>
-   repo.getAllExamsBySubject(token, subjectId);
+  Future<BaseResponse<List<ExamsModel>>> call(String subjectId) =>
+   repo.getAllExamsBySubject(subjectId);
 
 }

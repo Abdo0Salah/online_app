@@ -18,7 +18,6 @@ void main() {
   late MockGetAllSubjectsUseCases mockUseCase;
   late SubjectModel subjectModel;
   late List<SubjectModel> subjectList;
-  late String token;
   late Exception exception;
   late MockFlutterSecureStorage mockStorage;
   setUp(() {
@@ -31,22 +30,19 @@ void main() {
     );
     mockStorage = MockFlutterSecureStorage();
     viewModel.storage = mockStorage;
-
-    token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmEyYWM2OGZiMTlhZDk1NWIyMzZiZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxMjkwOTY0fQ.AL_txQPhDuA_6Q7Q5hEm-7YnyrniDT2iyQ4Tu76Qdz0";
   });
   exception = Exception("Failed to fetch subjects");
   blocTest<SubjectViewModel, SubjectStates>(
     'emits [loading, success] when GetAllSubjectsUseCases returns SuccessResponse',
 
     build: () {
-      when(mockUseCase.call(token)).thenAnswer(
+      when(mockUseCase.call()).thenAnswer(
         (realInvocation) async =>
             SuccessResponse<List<SubjectModel>>(data: subjectList),
       );
       return viewModel;
     },
-    act: (bloc) => bloc.doIntent(GetAllSubjectsEvent(token: token)),
+    act: (bloc) => bloc.doIntent(GetAllSubjectsEvent()),
     expect: () {
       var state = SubjectStates(
         getAllSubjectsStates: BaseState<List<SubjectModel>>( requestState: RequestState.loading),
@@ -64,19 +60,19 @@ void main() {
       ];
     },
     verify: (_) {
-      verify(mockUseCase(token)).called(1);
+      verify(mockUseCase()).called(1);
     },
   );
   blocTest<SubjectViewModel, SubjectStates>(
     'emits [loading, error] when GetAllSubjectsUseCases returns ErrorResponse',
     build: () {
-      when(mockUseCase.call(token)).thenAnswer(
+      when(mockUseCase.call()).thenAnswer(
         (realInvocation) async =>
             ErrorResponse<List<SubjectModel>>(error: exception),
       );
       return viewModel;
     },
-    act: (bloc) => bloc.doIntent(GetAllSubjectsEvent(token: token)),
+    act: (bloc) => bloc.doIntent(GetAllSubjectsEvent()),
     expect: () {
       var state = SubjectStates(
         getAllSubjectsStates: BaseState<List<SubjectModel>>( requestState: RequestState.loading),
@@ -94,7 +90,7 @@ void main() {
       ];
     },
     verify: (_) {
-      verify(mockUseCase(token)).called(1);
+      verify(mockUseCase()).called(1);
     },
   );
 
