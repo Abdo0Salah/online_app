@@ -32,5 +32,15 @@ class AppStrings {
   static const String pleaseEnterYourCodeThatSend = "Please enter your code that send to your email address";
   static const String pleaseEnterYourEmailAssociated = "Please enter your email associated to\n your account";
   static const String passwordMustNotBeEmptyAndMustContain = "Password must not be empty and must contain\n 6 characters with upper case letter and one\n number at least";
+  static const String profile = "profile";
+  static const String update = "update";
+  static const String change = "Change";
+  static const String hiddenPassword = '********';
+  static const String successfullyUpdated = 'Successfully Updated';
+
+
+
+
+
 
 }

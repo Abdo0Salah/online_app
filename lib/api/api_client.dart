@@ -11,10 +11,13 @@ import 'package:online_exam_app/features/auth/data/models_dto/verify_reset_code/
 import 'package:online_exam_app/features/auth/data/models_dto/verify_reset_code/verify_reset_code_response.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/exams_on_subject_response.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/subject_response.dart';
+import 'package:online_exam_app/features/profile/data/models/update-request.dart';
+import 'package:online_exam_app/features/profile/data/models/user_response.dart';
 import 'package:online_exam_app/features/questions/data/models_dto/questions/all_questions_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/signup_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
 import 'package:retrofit/retrofit.dart';
+import '../features/profile/data/models/update_user_response.dart';
 import 'constants/api_constants.dart';
 
 part 'api_client.g.dart';
@@ -44,9 +47,13 @@ abstract class ApiClient {
   Future<SubjectResponse> getAllSubjects();
 
   @GET(EndPoints.getAllExamsBySubject)
-  Future<ExamsOnSubjectResponse> getAllExamsBySubject(@Header('subject') String subjectId);
+  Future<ExamsOnSubjectResponse> getAllExamsBySubject(@Header('subject') String subjectId);@GET(EndPoints.profileData)
+  Future<UserResponse> getProfileData(@Header('token') String token);
 
   @GET(EndPoints.getAllQuestionsOnExam)
   Future<AllQuestionsResponse> getAllQuestionsOnExam ({@Query("exam") required String examId});
+  @PUT(EndPoints.updateProfileData)
+  Future<UpdateUserResponse> updateProfileData(@Header('token') String token,@Body() UpdateRequest updateRequest);
+
 
 }
