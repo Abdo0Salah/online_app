@@ -40,19 +40,13 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
       case UpdateProfileDataEventEvent():
         _updateUserData(event.token, event.updateRequest);
         _getUserData(event.token);
-      case OnClickChangePassword():
-        _changePasswordClicked();
+      case ClickedButton():
+        _clickedButton(event.click);
     }
   }
 
   Future<void> _getUserData(String token) async {
-    emit(
-      state.copyWith(
-        getProfileDataStates: BaseState<UserModel>(
-          requestState: RequestState.loading,
-        ),
-      ),
-    );
+    emit(state.copyWith(getProfileDataStates: BaseState<UserModel>.loading()));
 
     BaseResponse<UserModel> response = await _getUserDataUseCase(token);
     switch (response) {
@@ -60,10 +54,7 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
         {
           emit(
             state.copyWith(
-              getProfileDataStates: BaseState<UserModel>(
-                data: response.data,
-                requestState: RequestState.loaded,
-              ),
+              getProfileDataStates: BaseState<UserModel>.loaded(response.data),
             ),
           );
         }
@@ -72,9 +63,8 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
         {
           emit(
             state.copyWith(
-              getProfileDataStates: BaseState<UserModel>(
-                errorMessage: response.error.toString(),
-                requestState: RequestState.error,
+              getProfileDataStates: BaseState<UserModel>.error(
+                response.error.toString(),
               ),
             ),
           );
@@ -88,9 +78,7 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
   ) async {
     emit(
       state.copyWith(
-        updateProfileDataStates: BaseState<UpdateUserModel>(
-          requestState: RequestState.loading,
-        ),
+        updateProfileDataStates: BaseState<UpdateUserModel>.loading(),
       ),
     );
 
@@ -103,9 +91,8 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
         {
           emit(
             state.copyWith(
-              updateProfileDataStates: BaseState<UpdateUserModel>(
-                data: response.data,
-                requestState: RequestState.loaded,
+              updateProfileDataStates: BaseState<UpdateUserModel>.loaded(
+                response.data,
               ),
             ),
           );
@@ -115,9 +102,8 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
         {
           emit(
             state.copyWith(
-              updateProfileDataStates: BaseState<UpdateUserModel>(
-                errorMessage: response.error.toString(),
-                requestState: RequestState.error,
+              updateProfileDataStates: BaseState<UpdateUserModel>.error(
+                response.error.toString(),
               ),
             ),
           );
@@ -125,13 +111,11 @@ class ProfileViewModel extends Cubit<ProfileStates> with EquatableMixin {
     }
   }
 
-  void _changePasswordClicked() async {
-    emit(
-      state.copyWith(
-        clickChangePasswordStates: BaseState<UpdateUserModel>(
-          requestState: RequestState.loading,
-        ),
-      ),
-    );
+  void _clickedButton(bool flag) async {
+    if (flag == true) {
+      emit(state.copyWith(onClicked: true));
+    } else if (flag == false) {
+      emit(state.copyWith(onClicked: false));
+    }
   }
 }

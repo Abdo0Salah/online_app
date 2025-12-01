@@ -16,4 +16,7 @@ class UpdateProfileDataEventEvent extends ProfileEvent {
   });
 }
 
-class OnClickChangePassword extends ProfileEvent {}
+class ClickedButton extends ProfileEvent {
+  bool click;
+  ClickedButton({required this.click});
+}

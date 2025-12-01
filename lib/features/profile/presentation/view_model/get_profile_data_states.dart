@@ -6,30 +6,30 @@ import '../../domain/models/update_user_model.dart';
 class ProfileStates extends Equatable {
   final BaseState<UserModel>? getProfileDataStates;
   final BaseState<UpdateUserModel>? updateProfileDataStates;
-  final BaseState<UpdateUserModel>? clickChangePasswordStates;
+  final bool? onClicked;
 
   const ProfileStates({
     this.getProfileDataStates,
     this.updateProfileDataStates,
-    this.clickChangePasswordStates,
+    this.onClicked,
   });
   @override
   List<Object?> get props => [
     getProfileDataStates,
     updateProfileDataStates,
-    clickChangePasswordStates,
+    onClicked,
   ];
   ProfileStates copyWith({
     BaseState<UserModel>? getProfileDataStates,
     BaseState<UpdateUserModel>? updateProfileDataStates,
-    BaseState<UpdateUserModel>? clickChangePasswordStates,
+    bool? onClicked,
   }) {
     return ProfileStates(
       getProfileDataStates: getProfileDataStates ?? this.getProfileDataStates,
       updateProfileDataStates:
           updateProfileDataStates ?? this.updateProfileDataStates,
-      clickChangePasswordStates:
-          clickChangePasswordStates ?? this.clickChangePasswordStates,
+      onClicked:
+      onClicked ?? this.onClicked,
     );
   }
 }
