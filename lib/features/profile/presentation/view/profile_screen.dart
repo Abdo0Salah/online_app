@@ -22,13 +22,28 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final ProfileViewModel profileViewModel = getIt<ProfileViewModel>();
   final _formKey = GlobalKey<FormState>();
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // نبدأ جلب البيانات فور الدخول
+  //   profileViewModel.doIntent(
+  //     GetProfileDataEventEvent(token: profileViewModel.token),
+  //   );
+  // }
 
+  // @override
+  // void dispose() {
+  //   // الحل السحري اللي مش محتاج تغيير أي حاجة تانية
+  //   profileViewModel.close();   // نغلق الـ Cubit يدويًا
+  //   super.dispose();
+  // }
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ProfileViewModel>(
       create: (context) =>
           profileViewModel
             ..doIntent(GetProfileDataEventEvent(token: profileViewModel.token)),
+      lazy: false,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
@@ -103,17 +118,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                         BlocConsumer<ProfileViewModel, ProfileStates>(
                           listener: (context, state) {
-                            var clickChangePasswordState =
-                                state.clickChangePasswordStates;
-
-                            if (clickChangePasswordState == null) {
+                            var clicked = state.onClicked;
+                            if (clicked == null) {
                               return;
-                            } else if (clickChangePasswordState.isLoading) {
+                            } else if (clicked == true) {
                               Navigator.pushNamed(
                                 context,
-                                RoutesStrings.forgetPasswordScreen,
+                                RoutesStrings.resetPasswordScreen,
+
                               );
-                              clickChangePasswordState = null;
+                              profileViewModel.doIntent(
+                                ClickedButton(click: false),
+                              );
                             }
                           },
                           builder: (context, state) {
@@ -125,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               suffixTest: AppStrings.change,
                               onTap: () {
                                 profileViewModel.doIntent(
-                                  OnClickChangePassword(),
+                                  ClickedButton(click: true),
                                 );
                               },
                             );

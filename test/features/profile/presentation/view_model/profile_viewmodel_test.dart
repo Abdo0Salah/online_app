@@ -77,13 +77,9 @@ void main() {
       ' when user click Change Password it will navigate to forget password screen',
       build: () => viewModel,
 
-      act: (bloc) => viewModel.doIntent(OnClickChangePassword()),
+      act: (bloc) => viewModel.doIntent(ClickedButton(click: true)),
       expect: () {
-        return [
-          ProfileStates(
-            clickChangePasswordStates: BaseState<UpdateUserModel>.loading(),
-          ),
-        ];
+        return [ProfileStates(onClicked: true)];
       },
     );
   });
@@ -154,26 +150,26 @@ void main() {
           ProfileStates(
             getProfileDataStates: null,
             updateProfileDataStates: BaseState<UpdateUserModel>.loading(),
-            clickChangePasswordStates: null,
+            onClicked: null,
           ),
           ProfileStates(
             getProfileDataStates: BaseState<UserModel>.loading(),
             updateProfileDataStates: BaseState<UpdateUserModel>.loading(),
-            clickChangePasswordStates: null,
+            onClicked: null,
           ),
           ProfileStates(
             getProfileDataStates: BaseState<UserModel>.loading(),
             updateProfileDataStates: BaseState<UpdateUserModel>.loaded(
               updateUserModel,
             ),
-            clickChangePasswordStates: null,
+            onClicked: null,
           ),
           ProfileStates(
             getProfileDataStates: BaseState<UserModel>.loaded(userModel),
             updateProfileDataStates: BaseState<UpdateUserModel>.loaded(
               updateUserModel,
             ),
-            clickChangePasswordStates: null,
+            onClicked: null,
           ),
         ];
       },
@@ -201,19 +197,19 @@ void main() {
           ProfileStates(
             getProfileDataStates: null,
             updateProfileDataStates: BaseState<UpdateUserModel>.loading(),
-            clickChangePasswordStates: null,
+            onClicked: null,
           ),
           ProfileStates(
             getProfileDataStates: BaseState<UserModel>.loading(),
             updateProfileDataStates: BaseState<UpdateUserModel>.loading(),
-            clickChangePasswordStates: null,
+            onClicked: null,
           ),
           ProfileStates(
             getProfileDataStates: BaseState<UserModel>.loading(),
             updateProfileDataStates: BaseState<UpdateUserModel>.error(
               exception.toString(),
             ),
-            clickChangePasswordStates: null,
+            onClicked: null,
           ),
           ProfileStates(
             getProfileDataStates: BaseState<UserModel>.error(
@@ -222,7 +218,7 @@ void main() {
             updateProfileDataStates: BaseState<UpdateUserModel>.error(
               exception.toString(),
             ),
-            clickChangePasswordStates: null,
+            onClicked: null,
           ),
         ];
       },
