@@ -7,7 +7,7 @@ import 'package:online_exam_app/features/hom_screen/presentation/subject/views/s
 import 'package:online_exam_app/features/profile/presentation/view/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-   HomeScreen({super.key});
+   const HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }

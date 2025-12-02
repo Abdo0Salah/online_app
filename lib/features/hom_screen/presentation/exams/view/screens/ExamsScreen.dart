@@ -5,6 +5,7 @@ import 'package:online_exam_app/core/theme/colors_manager.dart';
 import 'package:online_exam_app/features/hom_screen/presentation/Exams/view_model/Exams_event.dart';
 import 'package:online_exam_app/features/hom_screen/presentation/exams/view/widgets/custom_exam_card.dart';
 import 'package:online_exam_app/features/hom_screen/presentation/exams/view_model/exams_viewmodel.dart';
+import 'package:online_exam_app/features/questions/presentation/view/screens/questions_screen.dart';
 import '../../../../../../core/theme/app_styles.dart';
 import '../../../../../../core/values/app_strings.dart';
 import '../../view_model/exams_states.dart';
@@ -18,13 +19,14 @@ class ExamsScreen extends StatefulWidget {
 
 class _ExamsScreenState extends State<ExamsScreen> {
   final ExamsViewModel examsViewModel = getIt<ExamsViewModel>();
+
   @override
   Widget build(BuildContext context) {
     // SubjectModel s =ModalRoute.of(context)!.settings.arguments as SubjectModel;
     return BlocProvider<ExamsViewModel>(
-      create: (context) => examsViewModel
-        ..doIntent(GetAllExamsEvent(subjectId: examsViewModel.subjectId),
-        ),
+      create: (context) =>
+          examsViewModel
+            ..doIntent(GetAllExamsEvent(subjectId: examsViewModel.subjectId)),
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -54,7 +56,21 @@ class _ExamsScreenState extends State<ExamsScreen> {
                         final exam = state.getAllExamsStates?.data![index];
                         return Column(
                           children: [
-                            SizedBox(child: CustomExamCard(examsModel: exam!)),
+                            SizedBox(
+                              child: GestureDetector(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => QuestionsScreen(
+                                      examId: exam.id ?? "",
+                                      examTime: exam.duration ?? 30,
+                                    ),
+                                  ),
+                                ),
+
+                                child: CustomExamCard(examsModel: exam!),
+                              ),
+                            ),
                             SizedBox(height: 15),
                           ],
                         );
