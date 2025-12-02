@@ -63,9 +63,7 @@ class SubjectViewModel extends Cubit<SubjectStates> with EquatableMixin{
   }
 
   void _subjectClicked(SubjectModel subject, context)async {
-    emit(state.copyWith(
-      getAllSubjectsStates: BaseState<List<SubjectModel>>(data: state.getAllSubjectsStates?.data, requestState: RequestState.loaded),
-    ));
+    emit(state.copyWith(getAllSubjectsStates: BaseState<List<SubjectModel>>(data: state.getAllSubjectsStates?.data, requestState: RequestState.loaded),));
       await storage.write(key: 'selectedSubjectId', value: subject.Id);
     await storage.write(key: 'selectedSubjectName', value: subject.name);
       Navigator.pushNamed(context,RoutesStrings.examsScreen,arguments: subject);

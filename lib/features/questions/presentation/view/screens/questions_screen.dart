@@ -11,9 +11,9 @@ import 'package:online_exam_app/features/questions/presentation/view_model/all_q
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class QuestionsScreen extends StatelessWidget {
-  final String examId = "6700707030a3c3c1944a9c5d";
-  // final int examTime;
-  QuestionsScreen({super.key});
+  final String examId ;
+  final int examTime;
+  QuestionsScreen({super.key, required this.examId, required this.examTime});
 
   final AllQuestionsViewModel _viewModel = getIt<AllQuestionsViewModel>();
 
@@ -28,7 +28,7 @@ class QuestionsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => _viewModel..
       doIntent(GetAllQuestion(examId: examId))..
-      doIntent(GetStartTimer(durationInMinutes: 30)),
+      doIntent(GetStartTimer(durationInMinutes: examTime)),
       child: Scaffold(
         appBar: AppBar(
           title: Text("Exam", style: AppStyles.font20BlackW500()),
