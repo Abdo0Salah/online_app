@@ -12,9 +12,9 @@ class GetProfileDataRemoteDataSourceImpl
   ApiClient api;
   GetProfileDataRemoteDataSourceImpl(this.api);
   @override
-  Future<BaseResponse<UserDto>> getProfileData(String token) async {
+  Future<BaseResponse<UserDto>> getProfileData() async {
     try {
-      UserResponse userResponse = await api.getProfileData(token);
+      UserResponse userResponse = await api.getProfileData();
       UserDto userDto = userResponse.userDto ?? UserDto();
       return SuccessResponse<UserDto>(data: userDto);
     } catch (e) {

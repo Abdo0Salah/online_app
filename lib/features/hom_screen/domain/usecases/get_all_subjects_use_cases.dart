@@ -8,5 +8,5 @@ import 'package:online_exam_app/features/hom_screen/domain/repo/get_all_subjects
 class GetAllSubjectsUseCases {
   GetAllSubjectsRepoContract repo ;
   GetAllSubjectsUseCases(this.repo);
-  Future<BaseResponse<List <SubjectModel>>> call(String token) => repo.getAllSubjects(token);
+  Future<BaseResponse<List <SubjectModel>>> call() => repo.getAllSubjects();
 }

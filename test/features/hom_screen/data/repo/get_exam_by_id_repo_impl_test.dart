@@ -58,10 +58,10 @@ void main() {
         createdAt: '2024-01-01T00:00:00Z',
       ),
     ];
-    when(mockRemoteDs.getAllExamsBySubject("token", "subjectId")).thenAnswer(
+    when(mockRemoteDs.getAllExamsBySubject("subjectId")).thenAnswer(
       (_) async => SuccessResponse<List<ExamsDto>>(data: [examDto, examDto]),
     );
-    final result = await repo.getAllExamsBySubject("token", "subjectId");
+    final result = await repo.getAllExamsBySubject("subjectId");
     expect(result, isA<SuccessResponse<List<ExamsModel>>>());
     expect(
       (result as SuccessResponse<List<ExamsModel>>).data.length,
@@ -79,18 +79,18 @@ void main() {
       expect(result.data[i].createdAt, equals(dummySubjectDto[i].createdAt));
       expect(result.data[i].id, equals(dummySubjectDto[i].Id));
     }
-    verify(repo.getAllExamsBySubject("token", "subjectId")).called(1);
+    verify(repo.getAllExamsBySubject("subjectId")).called(1);
   });
   test(
     'when getAllExamsBySubject with ErrorResponse it should return Exception',
     () async {
       final Exception e = Exception("ex");
       when(
-        mockRemoteDs.getAllExamsBySubject("token", "subjectId"),
+        mockRemoteDs.getAllExamsBySubject("subjectId"),
       ).thenAnswer((_) async => ErrorResponse<List<ExamsDto>>(error: e));
-      final result = await repo.getAllExamsBySubject("token", "subjectId");
+      final result = await repo.getAllExamsBySubject("subjectId");
       expect(result, isA<ErrorResponse<List<ExamsModel>>>());
-      verify(repo.getAllExamsBySubject("token", "subjectId")).called(1);
+      verify(repo.getAllExamsBySubject("subjectId")).called(1);
     },
   );
 }

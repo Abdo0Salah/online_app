@@ -40,19 +40,15 @@ class MockUpdateProfileDataRepoContract extends _i1.Mock
 
   @override
   _i3.Future<_i4.BaseResponse<_i5.UpdateUserModel>> updateProfileData(
-    String? token,
     _i6.UpdateRequest? updateRequest,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#updateProfileData, [token, updateRequest]),
+            Invocation.method(#updateProfileData, [updateRequest]),
             returnValue:
                 _i3.Future<_i4.BaseResponse<_i5.UpdateUserModel>>.value(
                   _i7.dummyValue<_i4.BaseResponse<_i5.UpdateUserModel>>(
                     this,
-                    Invocation.method(#updateProfileData, [
-                      token,
-                      updateRequest,
-                    ]),
+                    Invocation.method(#updateProfileData, [updateRequest]),
                   ),
                 ),
           )

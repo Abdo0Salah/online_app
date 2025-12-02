@@ -4,7 +4,6 @@ import '../models/update_user_model.dart';
 
 abstract class UpdateProfileDataRepoContract {
   Future<BaseResponse<UpdateUserModel>> updateProfileData(
-    String token,
     UpdateRequest updateRequest,
   );
 }

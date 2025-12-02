@@ -1,8 +1,6 @@
 part of 'auth_view_model.dart';
 
 class AuthStates {
-
-
   final BaseState<ResponseLogin> login;
   final BaseState<ForgetPasswordModel> forgetPassword;
   final BaseState<VerifyResetCodeResponse> verifyResetCodeResponse;

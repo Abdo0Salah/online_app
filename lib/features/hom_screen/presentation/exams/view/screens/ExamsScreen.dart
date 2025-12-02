@@ -23,11 +23,7 @@ class _ExamsScreenState extends State<ExamsScreen> {
     // SubjectModel s =ModalRoute.of(context)!.settings.arguments as SubjectModel;
     return BlocProvider<ExamsViewModel>(
       create: (context) => examsViewModel
-        ..doIntent(
-          GetAllExamsEvent(
-            token: examsViewModel.token,
-            subjectId: examsViewModel.subjectId,
-          ),
+        ..doIntent(GetAllExamsEvent(subjectId: examsViewModel.subjectId),
         ),
       child: Scaffold(
         appBar: AppBar(

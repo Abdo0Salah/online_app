@@ -3,7 +3,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:online_exam_app/api/api_client.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/features/hom_screen/data/datasources/remote/get_exam_by_id_remote_ds_contract.dart';
 import 'package:online_exam_app/features/hom_screen/data/datasources/remote/get_exam_by_id_remote_ds_impl.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/exams_Dto.dart';
 import 'package:online_exam_app/features/hom_screen/data/models/exams_on_subject_response.dart';
@@ -37,11 +36,11 @@ void main() {
       SuccessResponse<List<ExamsDto>>(data: [examDto]),
     );
     when(
-      mockApiClient.getAllExamsBySubject("token", "subjectId"),
+      mockApiClient.getAllExamsBySubject( "subjectId"),
     ).thenAnswer((_) async => examsOnSubjectResponse);
-    final result = await dataSource.getAllExamsBySubject("token", "subjectId");
+    final result = await dataSource.getAllExamsBySubject( "subjectId");
     expect(result, isA<SuccessResponse<List<ExamsDto>>>());
-    verify(mockApiClient.getAllExamsBySubject("token", "subjectId")).called(1);
+    verify(mockApiClient.getAllExamsBySubject( "subjectId")).called(1);
     expect(
       (result as SuccessResponse<List<ExamsDto>>).data[0].active,
       equals(examDto.active),
@@ -74,11 +73,11 @@ void main() {
       ErrorResponse<List<ExamsDto>>(error: exception),
     );
     when(
-      mockApiClient.getAllExamsBySubject("token", "subjectId"),
+      mockApiClient.getAllExamsBySubject( "subjectId"),
     ).thenThrow(exception);
-    final result = await dataSource.getAllExamsBySubject("token", "subjectId");
+    final result = await dataSource.getAllExamsBySubject( "subjectId");
     expect(result, isA<ErrorResponse<List<ExamsDto>>>());
-    verify(mockApiClient.getAllExamsBySubject("token", "subjectId")).called(1);
+    verify(mockApiClient.getAllExamsBySubject( "subjectId")).called(1);
     expect(
       (result as ErrorResponse<List<ExamsDto>>).error,
       equals(exception),

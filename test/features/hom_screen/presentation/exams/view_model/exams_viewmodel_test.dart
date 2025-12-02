@@ -19,7 +19,6 @@ void main() {
   late MockGetExamByIdUseCase mockUseCase;
   late ExamsModel examsModel;
   late List<ExamsModel> examsList;
-  late String token;
   late String subjectId;
   late Exception exception;
   late MockFlutterSecureStorage mockStorage;
@@ -43,8 +42,6 @@ void main() {
     mockStorage = MockFlutterSecureStorage();
     viewModel.storage = mockStorage;
     subjectId = "subjectId";
-    token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmEyYWM2OGZiMTlhZDk1NWIyMzZiZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxMjkwOTY0fQ.AL_txQPhDuA_6Q7Q5hEm-7YnyrniDT2iyQ4Tu76Qdz0";
   });
   exception = Exception("Failed to fetch subjects");
   blocTest<ExamsViewModel, ExamsStates>(
@@ -54,14 +51,14 @@ void main() {
       when(
         mockStorage.read(key: 'selectedSubjectId'),
       ).thenAnswer((_) async => subjectId);
-      when(mockUseCase.call(token, subjectId)).thenAnswer(
+      when(mockUseCase.call(subjectId)).thenAnswer(
         (realInvocation) async =>
             SuccessResponse<List<ExamsModel>>(data: examsList),
       );
       return viewModel;
     },
     act: (bloc) =>
-        bloc.doIntent(GetAllExamsEvent(token: "token", subjectId: "subjectId")),
+        bloc.doIntent(GetAllExamsEvent(subjectId: "subjectId")),
     expect: () {
       var state = ExamsStates(
         ///
@@ -77,7 +74,7 @@ void main() {
       ];
     },
     verify: (_) {
-      verify(mockUseCase(token, subjectId)).called(1);
+      verify(mockUseCase(subjectId)).called(1);
     },
   );
   blocTest<ExamsViewModel, ExamsStates>(
@@ -86,14 +83,14 @@ void main() {
       when(
         mockStorage.read(key: 'selectedSubjectId'),
       ).thenAnswer((_) async => subjectId);
-      when(mockUseCase.call(token, subjectId)).thenAnswer(
+      when(mockUseCase.call(subjectId)).thenAnswer(
         (realInvocation) async =>
             ErrorResponse<List<ExamsModel>>(error: exception),
       );
       return viewModel;
     },
     act: (bloc) =>
-        bloc.doIntent(GetAllExamsEvent(token: token, subjectId: subjectId)),
+        bloc.doIntent(GetAllExamsEvent(subjectId: subjectId)),
     expect: () {
       var state = ExamsStates(
         getAllExamsStates: BaseState<List<ExamsModel>>( requestState: RequestState.loading),
@@ -110,7 +107,7 @@ void main() {
       ];
     },
     verify: (_) {
-      verify(mockUseCase(token, subjectId)).called(1);
+      verify(mockUseCase(subjectId)).called(1);
     },
   );
 }

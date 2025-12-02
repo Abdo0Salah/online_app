@@ -58,10 +58,10 @@ void main() {
     'test cases for get user data with nun empty data  it will return success ',
     () async {
       when(
-        remoteDS.getProfileData("token"),
+        remoteDS.getProfileData(),
       ).thenAnswer((_) async => SuccessResponse(data: userDto));
       final result =
-          await repo.getProfileData("token") as SuccessResponse<UserModel>;
+          await repo.getProfileData() as SuccessResponse<UserModel>;
       expect(result, isA<SuccessResponse<UserModel>>());
       expect(result.data.username, equals(userDto.username));
       expect(result.data.firstName, equals(userDto.firstName));
@@ -72,7 +72,7 @@ void main() {
       expect(result.data.createdAt, equals(userDto.createdAt));
       expect(result.data.isVerified, equals(userDto.isVerified));
       expect(result.data.Id, equals(userDto.Id));
-      verify(repo.getProfileData("token")).called(1);
+      verify(repo.getProfileData()).called(1);
     },
   );
   test(
@@ -80,13 +80,13 @@ void main() {
     () async {
       Exception e = Exception("error");
       when(
-        remoteDS.getProfileData("token"),
+        remoteDS.getProfileData(),
       ).thenAnswer((_) async => ErrorResponse<UserDto>(error: e));
       final result =
-          await repo.getProfileData("token") as ErrorResponse<UserModel>;
+          await repo.getProfileData() as ErrorResponse<UserModel>;
       expect(result, isA<ErrorResponse<UserModel>>());
 
-      verify(repo.getProfileData("token")).called(1);
+      verify(repo.getProfileData()).called(1);
     },
   );
 }

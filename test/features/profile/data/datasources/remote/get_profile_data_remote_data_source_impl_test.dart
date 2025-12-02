@@ -28,13 +28,13 @@ void main() {
     exception = Exception("e");
   });
   test('when call getProfileData it should return SuccessResponse', () async {
-    when(api.getProfileData("token")).thenAnswer((_) async => mockUserResponse);
+    when(api.getProfileData()).thenAnswer((_) async => mockUserResponse);
 
     final result =
-        await remoteDataSourceImpl.getProfileData("token")
+        await remoteDataSourceImpl.getProfileData()
             as SuccessResponse<UserDto>;
     expect(result, isA<SuccessResponse<UserDto>>());
-    verify(api.getProfileData("token")).called(1);
+    verify(api.getProfileData()).called(1);
     expect((result.data).email, equals(mockUserDto.email));
     expect((result.data).username, equals(mockUserDto.username));
     expect((result.data).phone, equals(mockUserDto.phone));
@@ -45,11 +45,11 @@ void main() {
     expect((result.data).role, equals(mockUserDto.role));
   });
   test('when call getProfileData it should return ErrorResponse', () async {
-    when(api.getProfileData("token")).thenThrow(exception);
+    when(api.getProfileData()).thenThrow(exception);
     final result =
-        await remoteDataSourceImpl.getProfileData("token")
+        await remoteDataSourceImpl.getProfileData()
             as ErrorResponse<UserDto>;
-    verify(api.getProfileData("token")).called(1);
+    verify(api.getProfileData()).called(1);
     expect(result, isA<ErrorResponse<UserDto>>());
     expect(result, isNotNull);
   });

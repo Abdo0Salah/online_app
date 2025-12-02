@@ -96,14 +96,14 @@ class MockGetAllSubjectsUseCases extends _i1.Mock
   );
 
   @override
-  _i5.Future<_i6.BaseResponse<List<_i7.SubjectModel>>> call(String? token) =>
+  _i5.Future<_i6.BaseResponse<List<_i7.SubjectModel>>> call() =>
       (super.noSuchMethod(
-            Invocation.method(#call, [token]),
+            Invocation.method(#call, []),
             returnValue:
                 _i5.Future<_i6.BaseResponse<List<_i7.SubjectModel>>>.value(
                   _i8.dummyValue<_i6.BaseResponse<List<_i7.SubjectModel>>>(
                     this,
-                    Invocation.method(#call, [token]),
+                    Invocation.method(#call, []),
                   ),
                 ),
           )

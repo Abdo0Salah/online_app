@@ -7,7 +7,6 @@ import 'package:online_exam_app/features/sign_up/data/datasources/remote/signup_
 import 'package:online_exam_app/features/sign_up/data/models/signup_response.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_dto.dart';
 import 'package:online_exam_app/features/sign_up/data/models/user_request.dart';
-
 import '../../../../hom_screen/data/datasources/remote/get_all_subjects_remote_ds_impl._test.mocks.dart';
 
 @GenerateMocks([ApiClient])

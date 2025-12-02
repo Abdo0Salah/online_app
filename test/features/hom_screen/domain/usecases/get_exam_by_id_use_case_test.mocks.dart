@@ -38,19 +38,15 @@ class MockGetExamByIdRepoContract extends _i1.Mock
 
   @override
   _i3.Future<_i4.BaseResponse<List<_i5.ExamsModel>>> getAllExamsBySubject(
-    String? token,
     String? subjectId,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#getAllExamsBySubject, [token, subjectId]),
+            Invocation.method(#getAllExamsBySubject, [subjectId]),
             returnValue:
                 _i3.Future<_i4.BaseResponse<List<_i5.ExamsModel>>>.value(
                   _i6.dummyValue<_i4.BaseResponse<List<_i5.ExamsModel>>>(
                     this,
-                    Invocation.method(#getAllExamsBySubject, [
-                      token,
-                      subjectId,
-                    ]),
+                    Invocation.method(#getAllExamsBySubject, [subjectId]),
                   ),
                 ),
           )

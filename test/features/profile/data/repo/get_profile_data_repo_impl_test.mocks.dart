@@ -39,13 +39,13 @@ class MockGetProfileDataRemoteDataSourceContract extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.BaseResponse<_i5.UserDto>> getProfileData(String? token) =>
+  _i3.Future<_i4.BaseResponse<_i5.UserDto>> getProfileData() =>
       (super.noSuchMethod(
-            Invocation.method(#getProfileData, [token]),
+            Invocation.method(#getProfileData, []),
             returnValue: _i3.Future<_i4.BaseResponse<_i5.UserDto>>.value(
               _i6.dummyValue<_i4.BaseResponse<_i5.UserDto>>(
                 this,
-                Invocation.method(#getProfileData, [token]),
+                Invocation.method(#getProfileData, []),
               ),
             ),
           )

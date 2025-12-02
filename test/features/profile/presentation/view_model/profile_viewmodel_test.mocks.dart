@@ -78,13 +78,13 @@ class MockGetUserDataUseCase extends _i1.Mock
   );
 
   @override
-  _i5.Future<_i6.BaseResponse<_i7.UserModel>> call(String? token) =>
+  _i5.Future<_i6.BaseResponse<_i7.UserModel>> call() =>
       (super.noSuchMethod(
-            Invocation.method(#call, [token]),
+            Invocation.method(#call, []),
             returnValue: _i5.Future<_i6.BaseResponse<_i7.UserModel>>.value(
               _i8.dummyValue<_i6.BaseResponse<_i7.UserModel>>(
                 this,
-                Invocation.method(#call, [token]),
+                Invocation.method(#call, []),
               ),
             ),
           )
@@ -119,16 +119,15 @@ class MockUpdateUserDataUseCase extends _i1.Mock
 
   @override
   _i5.Future<_i6.BaseResponse<_i10.UpdateUserModel>> call(
-    String? token,
     _i11.UpdateRequest? updateRequest,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#call, [token, updateRequest]),
+            Invocation.method(#call, [updateRequest]),
             returnValue:
                 _i5.Future<_i6.BaseResponse<_i10.UpdateUserModel>>.value(
                   _i8.dummyValue<_i6.BaseResponse<_i10.UpdateUserModel>>(
                     this,
-                    Invocation.method(#call, [token, updateRequest]),
+                    Invocation.method(#call, [updateRequest]),
                   ),
                 ),
           )

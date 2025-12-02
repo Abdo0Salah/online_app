@@ -38,12 +38,12 @@ void main() {
       subjectsDto: dummySubjectDto,
     );
     when(
-      mockApiClient.getAllSubjects("token"),
+      mockApiClient.getAllSubjects(),
     ).thenAnswer((_) async => dummySubjectResponse);
 
     ///
     final result =
-        await remoteDsImpl.getAllSubjects("token")
+        await remoteDsImpl.getAllSubjects()
             as SuccessResponse<List<SubjectsDto>>;
     expect(result, isA<SuccessResponse<List<SubjectsDto>>>());
     expect((result).data.length, equals(2));
@@ -52,7 +52,7 @@ void main() {
       expect(result.data[i].icon, equals(dummySubjectDto[i].icon));
       expect(result.data[i].name, equals(dummySubjectDto[i].name));
     }
-    verify(mockApiClient.getAllSubjects("token")).called(1);
+    verify(mockApiClient.getAllSubjects()).called(1);
   });
 
   test('when call getAllSubjects it should return ErrorResponse', () async {
@@ -63,11 +63,11 @@ void main() {
       metadata: dummyMetadata,
       subjectsDto: dummySubjectDto,
     );
-    when(mockApiClient.getAllSubjects("token")).thenThrow(exception);
+    when(mockApiClient.getAllSubjects()).thenThrow(exception);
     final result =
-        await remoteDsImpl.getAllSubjects("token")
+        await remoteDsImpl.getAllSubjects()
             as ErrorResponse<List<SubjectsDto>>;
-    verify(mockApiClient.getAllSubjects("token")).called(1);
+    verify(mockApiClient.getAllSubjects()).called(1);
     expect(result, isA<ErrorResponse<List<SubjectsDto>>>());
     expect(result, isNotNull);
     expect(result.error, equals(exception));

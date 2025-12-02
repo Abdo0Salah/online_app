@@ -17,7 +17,6 @@ class ExamsViewModel extends Cubit<ExamsStates> with EquatableMixin{
       : super(ExamsStates());
   var storage = FlutterSecureStorage();
   //will be token from local storage
-  String token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmEyYWM2OGZiMTlhZDk1NWIyMzZiZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxMjkwOTY0fQ.AL_txQPhDuA_6Q7Q5hEm-7YnyrniDT2iyQ4Tu76Qdz0";
   String? subjectId;
   @override
   List<Object> get props {
@@ -41,7 +40,7 @@ class ExamsViewModel extends Cubit<ExamsStates> with EquatableMixin{
     await storage.read(key: 'selectedSubjectId' ).then((value) {
         subjectId=value;
     });
-    BaseResponse<List<ExamsModel>> response = await _getExamByIdUseCase(token,subjectId!);
+    BaseResponse<List<ExamsModel>> response = await _getExamByIdUseCase(subjectId!);
     switch (response) {
       case SuccessResponse<List<ExamsModel>>():
         {

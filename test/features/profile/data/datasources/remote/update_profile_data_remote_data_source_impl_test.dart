@@ -35,14 +35,14 @@ void main() {
     'when call UpdateProfileData it should return SuccessResponse',
     () async {
       when(
-        api.updateProfileData("token", updateRequest),
+        api.updateProfileData( updateRequest),
       ).thenAnswer((_) async => mockUserResponse);
 
       final result =
-          await dataSourceImpl.updateProfileData("token", updateRequest)
+          await dataSourceImpl.updateProfileData( updateRequest)
               as SuccessResponse<UpdateUserDto>;
       expect(result, isA<SuccessResponse<UpdateUserDto>>());
-      verify(api.updateProfileData("token", updateRequest)).called(1);
+      verify(api.updateProfileData( updateRequest)).called(1);
       expect((result.data).email, equals(mockUserDto.email));
       expect((result.data).username, equals(mockUserDto.username));
       expect((result.data).phone, equals(mockUserDto.phone));
@@ -54,11 +54,11 @@ void main() {
     },
   );
   test('when call updateProfileData it should return ErrorResponse', () async {
-    when(api.updateProfileData("token", updateRequest)).thenThrow(exception);
+    when(api.updateProfileData( updateRequest)).thenThrow(exception);
     final result =
-        await dataSourceImpl.updateProfileData("token", updateRequest)
+        await dataSourceImpl.updateProfileData( updateRequest)
             as ErrorResponse<UpdateUserDto>;
-    verify(api.updateProfileData("token", updateRequest)).called(1);
+    verify(api.updateProfileData( updateRequest)).called(1);
     expect(result, isA<ErrorResponse<UpdateUserDto>>());
     expect(result, isNotNull);
   });

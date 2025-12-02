@@ -35,11 +35,11 @@ void main() {
           SubjectsDto(Id: "2", name: "Mat2h", icon: "mat2h.png"),
         ];
         // when call
-        when(remoteDsImpl.getAllSubjects("token")).thenAnswer(
+        when(remoteDsImpl.getAllSubjects()).thenAnswer(
           (_) async =>
               SuccessResponse<List<SubjectsDto>>(data: dummySubjectDto),
         );
-        final result = await mockRepo.getAllSubjects("token");
+        final result = await mockRepo.getAllSubjects();
 
         expect(result, isA<SuccessResponse<List<SubjectModel>>>());
         expect(
@@ -51,19 +51,19 @@ void main() {
           expect(result.data[i].icon, equals(dummySubjectDto[i].icon));
           expect(result.data[i].name, equals(dummySubjectDto[i].name));
         }
-        verify(mockRepo.getAllSubjects("token")).called(1);
+        verify(mockRepo.getAllSubjects()).called(1);
       });
       test(
         "when signUp with ErrorResponse it should return Exception",
         () async {
           // when call
-          when(remoteDsImpl.getAllSubjects("token")).thenAnswer(
+          when(remoteDsImpl.getAllSubjects()).thenAnswer(
             (_) async =>
                 ErrorResponse<List<SubjectsDto>>(error: Exception("Error")),
           );
-          final result = await mockRepo.getAllSubjects("token");
+          final result = await mockRepo.getAllSubjects();
           expect(result, isA<ErrorResponse<List<SubjectModel>>>());
-          verify(mockRepo.getAllSubjects("token")).called(1);
+          verify(mockRepo.getAllSubjects()).called(1);
         },
       );
     },

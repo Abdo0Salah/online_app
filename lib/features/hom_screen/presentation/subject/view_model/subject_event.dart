@@ -5,8 +5,7 @@ import 'package:online_exam_app/features/hom_screen/domain/models/subjectModel.d
 sealed class SubjectEvent {}
 
 class GetAllSubjectsEvent extends SubjectEvent {
-String token;
-  GetAllSubjectsEvent({required this.token});
+  GetAllSubjectsEvent();
 }
 class NavigateToExamsEvent extends SubjectEvent with EquatableMixin{
   final SubjectModel subject;

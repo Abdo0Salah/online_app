@@ -42,15 +42,14 @@ class MockUpdateProfileDataRemoteDataSourceContract extends _i1.Mock
 
   @override
   _i3.Future<_i4.BaseResponse<_i5.UpdateUserDto>> updateProfileData(
-    String? token,
     _i6.UpdateRequest? updateRequest,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#updateProfileData, [token, updateRequest]),
+            Invocation.method(#updateProfileData, [updateRequest]),
             returnValue: _i3.Future<_i4.BaseResponse<_i5.UpdateUserDto>>.value(
               _i7.dummyValue<_i4.BaseResponse<_i5.UpdateUserDto>>(
                 this,
-                Invocation.method(#updateProfileData, [token, updateRequest]),
+                Invocation.method(#updateProfileData, [updateRequest]),
               ),
             ),
           )

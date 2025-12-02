@@ -6,6 +6,7 @@ class RoutesStrings {
   static const String otpScreen = "/otpScreen";
   static const String homeScreen = "/homeScreen";
   static const String examsScreen = "/examsScreen";
+  static const String allQuestionsOnExams = "/allQuestionsOnExams";
   static const String profileScreen = "/profileScreen";
 
 

@@ -38,7 +38,7 @@ class _SubjectTabState extends State<SubjectTab> {
     return BlocProvider<SubjectViewModel>(
       create: (context) =>
           subjectViewModel
-            ..doIntent(GetAllSubjectsEvent(token: subjectViewModel.token)),
+            ..doIntent(GetAllSubjectsEvent()),
 
       child: Scaffold(
         appBar: AppBar(title: Text(AppStrings.exploreAppBarTitle,style: AppStyles.font20BlackW500().copyWith(color:ColorsManager.myBlue ),)),

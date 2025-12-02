@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocProvider<ProfileViewModel>(
       create: (context) =>
           profileViewModel
-            ..doIntent(GetProfileDataEventEvent(token: profileViewModel.token)),
+            ..doIntent(GetProfileDataEventEvent()),
       lazy: false,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
@@ -215,7 +215,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
       profileViewModel.doIntent(
         UpdateProfileDataEventEvent(
-          token: profileViewModel.token,
           updateRequest: request,
         ),
       );

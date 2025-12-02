@@ -13,11 +13,10 @@ class GetExamByIdRepoImpl implements GetExamByIdRepoContract {
   GetExamByIdRepoImpl(this.remoteDs, this.localDs);
   @override
   Future<BaseResponse<List<ExamsModel>>> getAllExamsBySubject(
-    String token,
     String subjectId,
   ) async {
   BaseResponse<List<ExamsDto>> examsDtosResponse = (await remoteDs
-        .getAllExamsBySubject(token, subjectId)) ;
+        .getAllExamsBySubject(subjectId)) ;
     switch (examsDtosResponse) {
       case SuccessResponse<List<ExamsDto>>():
         {
